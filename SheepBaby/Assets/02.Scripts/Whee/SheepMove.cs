@@ -1,4 +1,5 @@
 using Cinemachine.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,10 @@ public class SheepMove : SheepAction
     public enum State { idle, water, bell, eat, cut};
     public State state = State.idle;
 
-    private GameObject icon;
+    public GameObject icon;
     private new BoxCollider2D collider;
 
-    bool isChose;
+    public bool isChose;
 
     protected override void Awake()
     {
@@ -49,46 +50,29 @@ public class SheepMove : SheepAction
 
     public override void AddEvent()
     {
+        Debug.Log("add");
         switch (state)
         {
             case State.water:
-                Debug.Log("df");
-                input.OnWaterEvent += Water;
+                Water();
                 break;
             case State.bell:
-                input.OnWaterEvent += Bell;
+                Bell();
                 break;
             case State.eat:
-                input.OnWaterEvent += Eat;
+                Eat();
                 break;
             case State.cut:
-                input.OnWaterEvent += Cut;
+                Cut();
                 break;
         }
     }
 
-    public override void RemoveEvent()
+    public override void RemoveEvent(SheepMove sheep)
     {
-        switch (state)
-        {
-            case State.water:
-                input.OnWaterEvent -= Water;
-                break;
-            case State.bell:
-                input.OnWaterEvent -= Bell;
-                break;
-            case State.eat:
-                input.OnWaterEvent -= Eat;
-                break;
-            case State.cut:
-                input.OnWaterEvent -= Cut;
-                break;
-        }
-
+        state = State.idle;
         isChose = false;
-        icon.SetActive(isChose);
+        icon.SetActive(false);
         sheeps.Remove(this);
-
-        base.RemoveEvent();
     }
 }

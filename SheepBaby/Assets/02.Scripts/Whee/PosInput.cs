@@ -7,12 +7,7 @@ using DG.Tweening;
 
 public class PosInput : MonoBehaviour, IPosEvent
 {
-    protected PosInput input;
-
-    public event Action OnWaterEvent;
-    public event Action OnBellEvent;
-    public event Action OnEatEvent;
-    public event Action OnCutingEvent;
+    static protected PosInput input;
 
     [Header("Pos")]
     [SerializeField] private Transform waterPos;
@@ -24,6 +19,7 @@ public class PosInput : MonoBehaviour, IPosEvent
     [Header("Sheep")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float actionTime;
+
     static protected List<SheepMove> sheeps = new List<SheepMove>();
 
     protected virtual void Awake()
@@ -36,43 +32,46 @@ public class PosInput : MonoBehaviour, IPosEvent
 
     }
 
-    private void GoPos(Transform pos, Action even, SheepMove.State _state)
+    private void GoPos(Transform pos, SheepMove.State _state)
     {
         foreach (SheepMove sheep in sheeps)
         {
-            Debug.Log("1");
             if (sheep.state == SheepMove.State.idle)
             {
                 sheep.state = _state;
+                sheep.AddEvent();
+
                 sheep.transform.DOMove(pos.position, 1 / moveSpeed)
                 .OnComplete(() =>
                 {
-                    Debug.Log("3");
-                    sheep.AddEvent();
-                    Debug.Log("4");
-                    even?.Invoke();
-                    Invoke("RemoveEvent", actionTime);
+                    StartCoroutine(InvokeDelay(() => 
+                    { 
+                        sheep.RemoveEvent(sheep);
+                        RemoveEvent(sheep);
+                    }, actionTime));
                 });
             }
         }
     }
 
-    public void WaterAction() => GoPos(waterPos, OnWaterEvent, SheepMove.State.water);
+    public void WaterAction() => GoPos(waterPos, SheepMove.State.water);
 
-    public void BellAction() => GoPos(bellPos, OnBellEvent, SheepMove.State.bell);
+    public void BellAction() => GoPos(bellPos, SheepMove.State.bell);
 
-    public void EatAction() => GoPos(eatPos, OnEatEvent, SheepMove.State.eat);
+    public void EatAction() => GoPos(eatPos, SheepMove.State.eat);
 
-    public void CutAction() => GoPos(cutPos, OnCutingEvent, SheepMove.State.cut);
+    public void CutAction() => GoPos(cutPos, SheepMove.State.cut);
 
     public virtual void AddEvent() { }
 
-    public virtual void RemoveEvent() 
+    public virtual void RemoveEvent(SheepMove sheep)
     {
-        foreach (SheepMove sheep in sheeps)
-        {
-            sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
-            sheep.state = SheepMove.State.idle;
-        }
+        sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
+    }
+
+    IEnumerator InvokeDelay(Action act, float time)
+    {
+        yield return new WaitForSeconds(time);
+        act?.Invoke();
     }
 }

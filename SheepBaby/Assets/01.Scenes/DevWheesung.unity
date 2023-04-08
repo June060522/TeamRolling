@@ -227,10 +227,12 @@ MonoBehaviour:
   bellPos: {fileID: 0}
   eatPos: {fileID: 0}
   cutPos: {fileID: 0}
-  orgPos: {fileID: 0}
+  orgPos: {fileID: 690636846}
   moveSpeed: 0
   actionTime: 0
   state: 0
+  icon: {fileID: 0}
+  isChose: 0
 --- !u!61 &85436856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -809,7 +811,7 @@ GameObject:
   m_Layer: 0
   m_Name: OrgPos
   m_TagString: Untagged
-  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -821,7 +823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690636845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.22, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.27, y: 0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1329,10 +1331,12 @@ MonoBehaviour:
   bellPos: {fileID: 0}
   eatPos: {fileID: 0}
   cutPos: {fileID: 0}
-  orgPos: {fileID: 0}
+  orgPos: {fileID: 690636846}
   moveSpeed: 0
   actionTime: 0
   state: 0
+  icon: {fileID: 0}
+  isChose: 0
 --- !u!212 &969787419
 SpriteRenderer:
   m_ObjectHideFlags: 0

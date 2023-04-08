@@ -16,7 +16,7 @@ public class TimeCount : MonoBehaviour
         panelManager = GetComponent<PanelManager>();
     }
 
-    void Update()
+    public void Update()
     {
         timer += Time.deltaTime;
         timeText.text = $"{timer:N2}";

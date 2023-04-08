@@ -24,7 +24,7 @@ public class PosInput : MonoBehaviour, IPosEvent
     [Header("Sheep")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float actionTime;
-    protected List<SheepMove> sheeps;
+    static protected List<SheepMove> sheeps = new List<SheepMove>();
 
     protected virtual void Awake()
     {
@@ -40,14 +40,20 @@ public class PosInput : MonoBehaviour, IPosEvent
     {
         foreach (SheepMove sheep in sheeps)
         {
-            sheep.state = _state;
-            sheep.transform.DOMove(pos.position, moveSpeed)
-            .OnComplete(() =>
+            Debug.Log("1");
+            if (sheep.state == SheepMove.State.idle)
             {
-                AddEvent();
-                even?.Invoke();
-                Invoke("RemoveEvent", actionTime);
-            });
+                sheep.state = _state;
+                sheep.transform.DOMove(pos.position, 1 / moveSpeed)
+                .OnComplete(() =>
+                {
+                    Debug.Log("3");
+                    sheep.AddEvent();
+                    Debug.Log("4");
+                    even?.Invoke();
+                    Invoke("RemoveEvent", actionTime);
+                });
+            }
         }
     }
 
@@ -65,7 +71,7 @@ public class PosInput : MonoBehaviour, IPosEvent
     {
         foreach (SheepMove sheep in sheeps)
         {
-            sheep.transform.DOMove(orgPos.position, moveSpeed);
+            sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
             sheep.state = SheepMove.State.idle;
         }
     }

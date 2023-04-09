@@ -4,8 +4,9 @@ using UnityEngine;
 using System;
 using Interface;
 using DG.Tweening;
+using Enum;
 
-public class PosInput : MonoBehaviour, IPosEvent
+public class PosInput : MonoBehaviour
 {
     static protected PosInput input;
 
@@ -20,53 +21,33 @@ public class PosInput : MonoBehaviour, IPosEvent
     [SerializeField] private float moveSpeed;
     [SerializeField] private float actionTime;
 
-    static protected List<SheepMove> sheeps = new List<SheepMove>();
-
-    protected virtual void Awake()
+    private void Awake()
     {
         input = this;
     }
 
-    protected virtual void Update()
+    public void GoPos(Transform pos)
     {
-
-    }
-
-    private void GoPos(Transform pos, SheepMove.State _state)
-    {
+        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
         foreach (SheepMove sheep in sheeps)
         {
-            if (sheep.state == SheepMove.State.idle)
+            if (sheep.isChose)
             {
-                sheep.state = _state;
-                sheep.AddEvent();
-
-                sheep.transform.DOMove(pos.position, 1 / moveSpeed)
-                .OnComplete(() =>
-                {
-                    StartCoroutine(InvokeDelay(() => 
-                    { 
-                        sheep.RemoveEvent(sheep);
-                        RemoveEvent(sheep);
-                    }, actionTime));
-                });
+                SheepMovement(pos, sheep);
             }
         }
     }
 
-    public void WaterAction() => GoPos(waterPos, SheepMove.State.water);
-
-    public void BellAction() => GoPos(bellPos, SheepMove.State.bell);
-
-    public void EatAction() => GoPos(eatPos, SheepMove.State.eat);
-
-    public void CutAction() => GoPos(cutPos, SheepMove.State.cut);
-
-    public virtual void AddEvent() { }
-
-    public virtual void RemoveEvent(SheepMove sheep)
+    private void SheepMovement(Transform pos, SheepMove sheep)
     {
-        sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
+        sheep.transform.DOMove(pos.position, 1 / moveSpeed)
+        .OnComplete(() =>
+        {
+            StartCoroutine(InvokeDelay(() =>
+            {
+                sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
+            }, actionTime));
+        });
     }
 
     IEnumerator InvokeDelay(Action act, float time)

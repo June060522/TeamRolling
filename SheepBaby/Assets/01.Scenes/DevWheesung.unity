@@ -223,13 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75df7edecc2f04f9bbb9dfa59a6221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterPos: {fileID: 0}
-  bellPos: {fileID: 0}
-  eatPos: {fileID: 0}
-  cutPos: {fileID: 0}
-  orgPos: {fileID: 690636846}
-  moveSpeed: 0
-  actionTime: 0
   state: 0
   icon: {fileID: 0}
   isChose: 0
@@ -271,13 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88110752bd369c489139589091a366b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterPos: {fileID: 0}
-  bellPos: {fileID: 0}
-  eatPos: {fileID: 0}
-  cutPos: {fileID: 0}
-  orgPos: {fileID: 0}
-  moveSpeed: 0
-  actionTime: 0
 --- !u!1 &155794767
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,8 +518,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1842826167}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: WaterAction
-        m_Mode: 1
+        m_MethodName: GoPos
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1111,9 +1097,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842826167}
+      - m_Target: {fileID: 1842826166}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: BellAction
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1245,9 +1231,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842826167}
+      - m_Target: {fileID: 1842826166}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: EatAction
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1327,13 +1313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a75df7edecc2f04f9bbb9dfa59a6221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterPos: {fileID: 0}
-  bellPos: {fileID: 0}
-  eatPos: {fileID: 0}
-  cutPos: {fileID: 0}
-  orgPos: {fileID: 690636846}
-  moveSpeed: 0
-  actionTime: 0
   state: 0
   icon: {fileID: 0}
   isChose: 0
@@ -1443,13 +1422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88110752bd369c489139589091a366b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterPos: {fileID: 0}
-  bellPos: {fileID: 0}
-  eatPos: {fileID: 0}
-  cutPos: {fileID: 0}
-  orgPos: {fileID: 0}
-  moveSpeed: 0
-  actionTime: 0
 --- !u!1 &993635307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,9 +1979,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842826167}
+      - m_Target: {fileID: 1842826166}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: CutAction
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

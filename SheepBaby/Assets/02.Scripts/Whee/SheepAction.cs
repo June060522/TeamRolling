@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SheepAction : PosInput
+public class SheepAction : MonoBehaviour
 {
     public void Water()
     {

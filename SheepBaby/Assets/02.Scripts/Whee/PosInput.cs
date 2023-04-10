@@ -5,16 +5,21 @@ using System;
 using Interface;
 using DG.Tweening;
 using Enum;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class PosAction
+{
+    public Transform pos;
+    public SheepMove.State state;
+}
 
 public class PosInput : MonoBehaviour
 {
-    static protected PosInput input;
+    public static PosInput input;
+    public PosAction[] posAction = new PosAction[0];
 
     [Header("Pos")]
-    [SerializeField] private Transform waterPos;
-    [SerializeField] private Transform bellPos;
-    [SerializeField] private Transform eatPos;
-    [SerializeField] private Transform cutPos;
     [SerializeField] private Transform orgPos;
 
     [Header("Sheep")]
@@ -26,16 +31,23 @@ public class PosInput : MonoBehaviour
         input = this;
     }
 
-    public void GoPos(Transform pos)
+    public void GoPos(int number)
     {
         SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
         foreach (SheepMove sheep in sheeps)
         {
             if (sheep.isChose)
             {
-                SheepMovement(pos, sheep);
+                SheepMovement(posAction[number].pos, sheep);
+                SheepState(posAction[number].state, sheep);
             }
         }
+    }
+
+    void SheepState(SheepMove.State state, SheepMove sheep)
+    {
+        sheep.state = state;
+        sheep.Water();
     }
 
     private void SheepMovement(Transform pos, SheepMove sheep)

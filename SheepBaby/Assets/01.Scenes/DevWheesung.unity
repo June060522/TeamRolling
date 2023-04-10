@@ -2125,6 +2125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55629542dbbf7f84991a6eeadcc543c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posAction:
+  - pos: {fileID: 0}
+    a: 0
+  - pos: {fileID: 0}
+    a: 0
+  - pos: {fileID: 0}
+    a: 0
   waterPos: {fileID: 1389074393}
   bellPos: {fileID: 1827495021}
   eatPos: {fileID: 763127363}

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Enum
 {
-
     [System.Serializable]
     public enum Act
     {

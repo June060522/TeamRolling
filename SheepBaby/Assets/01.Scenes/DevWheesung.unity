@@ -224,7 +224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  icon: {fileID: 0}
   isChose: 0
 --- !u!61 &85436856
 BoxCollider2D:
@@ -1097,14 +1096,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842826166}
+      - m_Target: {fileID: 1842826167}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: GoPos
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1231,14 +1230,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842826166}
+      - m_Target: {fileID: 1842826167}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: GoPos
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1314,7 +1313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  icon: {fileID: 0}
   isChose: 0
 --- !u!212 &969787419
 SpriteRenderer:
@@ -1979,14 +1977,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842826166}
+      - m_Target: {fileID: 1842826167}
         m_TargetAssemblyTypeName: PosInput, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: GoPos
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2126,16 +2124,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posAction:
-  - pos: {fileID: 0}
-    a: 0
-  - pos: {fileID: 0}
-    a: 0
-  - pos: {fileID: 0}
-    a: 0
-  waterPos: {fileID: 1389074393}
-  bellPos: {fileID: 1827495021}
-  eatPos: {fileID: 763127363}
-  cutPos: {fileID: 740150392}
+  - pos: {fileID: 1389074393}
+    act: 0
+  - pos: {fileID: 1827495021}
+    act: 1
+  - pos: {fileID: 763127363}
+    act: 2
+  - pos: {fileID: 740150392}
+    act: 3
   orgPos: {fileID: 690636846}
   moveSpeed: 1
   actionTime: 3

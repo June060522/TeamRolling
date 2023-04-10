@@ -4,12 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SheepMove : MonoBehaviour
+public class SheepMove : SheepAction
 {
-    public enum State { idle, water, bell, eat, cut};
+    public enum State { idle, act };
     public State state = State.idle;
 
-    public GameObject icon;
+    private GameObject icon;
     private new BoxCollider2D collider;
 
     public bool isChose;
@@ -44,49 +44,10 @@ public class SheepMove : MonoBehaviour
         }
     }
 
-    public void AddEvent()
-    {
-        switch (state)
-        {
-            case State.water:
-                Water();
-                break;
-            case State.bell:
-                Bell();
-                break;
-            case State.eat:
-                Eat();
-                break;
-            case State.cut:
-                Cut();
-                break;
-        }
-    }
-
     public void RemoveEvent()
     {
         state = State.idle;
         isChose = false;
         icon.SetActive(false);
-    }
-
-    public void Water()
-    {
-        Debug.Log("water");
-    }
-
-    public void Bell()
-    {
-        Debug.Log("bell");
-    }
-
-    public void Eat()
-    {
-        Debug.Log("eat");
-    }
-
-    public void Cut()
-    {
-        Debug.Log("cut");
     }
 }

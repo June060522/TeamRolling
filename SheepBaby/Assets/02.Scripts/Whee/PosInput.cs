@@ -6,12 +6,13 @@ using Interface;
 using DG.Tweening;
 using Enum;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class PosAction
 {
     public Transform pos;
-    public SheepMove.State state;
+    public Act act;
 }
 
 public class PosInput : MonoBehaviour
@@ -36,30 +37,34 @@ public class PosInput : MonoBehaviour
         SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
         foreach (SheepMove sheep in sheeps)
         {
-            if (sheep.isChose)
+            if (sheep.isChose && sheep.state == SheepMove.State.idle)
             {
-                SheepMovement(posAction[number].pos, sheep);
-                SheepState(posAction[number].state, sheep);
+                SheepMovement(posAction[number], sheep);
             }
         }
     }
 
-    void SheepState(SheepMove.State state, SheepMove sheep)
+    private void SheepMovement(PosAction p, SheepMove sheep)
     {
-        sheep.state = state;
-        sheep.Water();
-    }
+        sheep.state = SheepMove.State.act;
 
-    private void SheepMovement(Transform pos, SheepMove sheep)
-    {
-        sheep.transform.DOMove(pos.position, 1 / moveSpeed)
+        sheep.transform.DOMove(p.pos.position, 1 / moveSpeed)
         .OnComplete(() =>
         {
+            SheepState(p.act, sheep);
+
             StartCoroutine(InvokeDelay(() =>
             {
                 sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
+                sheep.RemoveEvent();
             }, actionTime));
         });
+    }
+
+    void SheepState(Act act, SheepMove sheep)
+    {
+        Action[] funtionEveny = { sheep.Water, sheep.Bell, sheep.Eat, sheep.Cut };
+        funtionEveny[(int)act]();
     }
 
     IEnumerator InvokeDelay(Action act, float time)

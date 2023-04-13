@@ -9,11 +9,9 @@ public class TimeCount : MonoBehaviour
 
     public float timer;
 
-    private PanelManager panelManager;
-
     void Start()
     {
-        panelManager = GetComponent<PanelManager>();
+
     }
 
     public void Update()

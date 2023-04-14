@@ -3,10 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enum;
 
 public class SheepMove : SheepAction
 {
-    public enum State { idle, act };
     public State state = State.idle;
 
     private GameObject icon;
@@ -50,4 +50,28 @@ public class SheepMove : SheepAction
         isChose = false;
         icon.SetActive(false);
     }
+
+    public override void Water()
+    {
+        base.Water();
+        PosInput.input.SheepBackOrg(this);
+    }
+
+    public override void Eat()
+    {
+        base.Eat();
+        PosInput.input.SheepBackOrg(this);
+    }
+
+    //public override void Bell()
+    //{
+    //    base.Bell();
+    //    PosInput.input.SheepBackOrg(this);
+    //}
+
+    //public override void Cut()
+    //{
+    //    base.Cut();
+    //    PosInput.input.SheepBackOrg(this);
+    //}
 }

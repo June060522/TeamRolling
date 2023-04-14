@@ -9,21 +9,31 @@ public class SheepAbiliity : MonoBehaviour
     { fun, thirst, hungry, stress };
 
     [Header("¾ç ±âº» ½ºÅÝ")]
-    [SerializeField] float fun = 100f;
+    //[SerializeField] float fun = 100f;
     [SerializeField] float thirst = 100f;
     [SerializeField] float hungry = 100f;
     [SerializeField] float stress = 100f;
+
+    public float Thirst { get; private set; }
+    public float Hungry { get; private set; }
+    public float Stress { get; private set; }
 
     private float lifeTime = 0f;
 
     private void Start()
     {
         StartCoroutine(SheepAbilityChange());
+        StateWindow();
     }
 
     public void Update()
     {
         lifeTime += Time.deltaTime;
+    }
+
+    private void StateWindow()
+    {
+
     }
 
     IEnumerator SheepAbilityChange()
@@ -45,7 +55,7 @@ public class SheepAbiliity : MonoBehaviour
         switch (stat)
         {
             case Stat.fun:
-                fun += changeValue;
+                //fun += changeValue;
                 break;
             case Stat.thirst:
                 thirst += changeValue;

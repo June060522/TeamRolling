@@ -8,8 +8,15 @@ namespace Enum
     public enum Act
     {
         water,
-        bell,
         eat,
+        bell,
         cut,
     }
+
+    [System.Serializable]
+    public enum State
+    { 
+        idle,
+        act 
+    };
 }

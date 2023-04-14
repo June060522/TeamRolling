@@ -48,14 +48,15 @@ public class PosInput : MonoBehaviour
     {
         sheep.state = SheepMove.State.act;
 
-        sheep.transform.DOMove(p.pos.position, 1 / moveSpeed)
+        sheep.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed)
         .OnComplete(() =>
         {
             SheepState(p.act, sheep);
 
             StartCoroutine(InvokeDelay(() =>
             {
-                sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
+                float orgPosRange = UnityEngine.Random.Range(orgPos.position.x - 2, orgPos.position.x + 2);
+                sheep.transform.DOMoveX(orgPosRange, 1 / moveSpeed);
                 sheep.RemoveEvent();
             }, actionTime));
         });

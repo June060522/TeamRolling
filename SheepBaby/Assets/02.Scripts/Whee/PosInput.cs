@@ -4,75 +4,73 @@ using UnityEngine;
 using System;
 using Interface;
 using DG.Tweening;
+using Enum;
+using UnityEngine.Events;
+using Unity.VisualScripting;
 
-public class PosInput : MonoBehaviour, IPosEvent
+[System.Serializable]
+public class PosAction
 {
-    protected PosInput input;
+    public Transform pos;
+    public Act act;
+}
 
-    public event Action OnWaterEvent;
-    public event Action OnBellEvent;
-    public event Action OnEatEvent;
-    public event Action OnCutingEvent;
+public class PosInput : MonoBehaviour
+{
+    public static PosInput input;
+    public PosAction[] posAction = new PosAction[0];
 
     [Header("Pos")]
-    [SerializeField] private Transform waterPos;
-    [SerializeField] private Transform bellPos;
-    [SerializeField] private Transform eatPos;
-    [SerializeField] private Transform cutPos;
     [SerializeField] private Transform orgPos;
 
     [Header("Sheep")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float actionTime;
-    static protected List<SheepMove> sheeps = new List<SheepMove>();
 
-    protected virtual void Awake()
+    private void Awake()
     {
         input = this;
     }
 
-    protected virtual void Update()
+    public void GoPos(int number)
     {
-
-    }
-
-    private void GoPos(Transform pos, Action even, SheepMove.State _state)
-    {
+        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
         foreach (SheepMove sheep in sheeps)
         {
-            Debug.Log("1");
-            if (sheep.state == SheepMove.State.idle)
+            if (sheep.isChose && sheep.state == SheepMove.State.idle)
             {
-                sheep.state = _state;
-                sheep.transform.DOMove(pos.position, 1 / moveSpeed)
-                .OnComplete(() =>
-                {
-                    Debug.Log("3");
-                    sheep.AddEvent();
-                    Debug.Log("4");
-                    even?.Invoke();
-                    Invoke("RemoveEvent", actionTime);
-                });
+                SheepMovement(posAction[number], sheep);
             }
         }
     }
 
-    public void WaterAction() => GoPos(waterPos, OnWaterEvent, SheepMove.State.water);
-
-    public void BellAction() => GoPos(bellPos, OnBellEvent, SheepMove.State.bell);
-
-    public void EatAction() => GoPos(eatPos, OnEatEvent, SheepMove.State.eat);
-
-    public void CutAction() => GoPos(cutPos, OnCutingEvent, SheepMove.State.cut);
-
-    public virtual void AddEvent() { }
-
-    public virtual void RemoveEvent() 
+    private void SheepMovement(PosAction p, SheepMove sheep)
     {
-        foreach (SheepMove sheep in sheeps)
+        sheep.state = SheepMove.State.act;
+
+        sheep.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed)
+        .OnComplete(() =>
         {
-            sheep.transform.DOMove(orgPos.position, 1 / moveSpeed);
-            sheep.state = SheepMove.State.idle;
-        }
+            SheepState(p.act, sheep);
+
+            StartCoroutine(InvokeDelay(() =>
+            {
+                float orgPosRange = UnityEngine.Random.Range(orgPos.position.x - 2, orgPos.position.x + 2);
+                sheep.transform.DOMoveX(orgPosRange, 1 / moveSpeed);
+                sheep.RemoveEvent();
+            }, actionTime));
+        });
+    }
+
+    void SheepState(Act act, SheepMove sheep)
+    {
+        Action[] funtionEveny = { sheep.Water, sheep.Bell, sheep.Eat, sheep.Cut };
+        funtionEveny[(int)act]();
+    }
+
+    IEnumerator InvokeDelay(Action act, float time)
+    {
+        yield return new WaitForSeconds(time);
+        act?.Invoke();
     }
 }

@@ -19,12 +19,13 @@ public class TimeCount : MonoBehaviour
         else
             Debug.LogError("TimeCount is Multiple");
     }
+    
     void Start()
     {
-        panelManager = GetComponent<PanelManager>();
+
     }
 
-    void Update()
+    public void Update()
     {
         timer += Time.deltaTime;
         timeText.text = $"{timer:N2}";

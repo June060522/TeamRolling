@@ -1903,6 +1903,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storePanel: {fileID: 572408771}
   optionPanel: {fileID: 2029192608}
+  storeButton: {fileID: 835709974}
+  optionButton: {fileID: 767530078}
+  isSetActive: 0
 --- !u!4 &1930512398
 Transform:
   m_ObjectHideFlags: 0

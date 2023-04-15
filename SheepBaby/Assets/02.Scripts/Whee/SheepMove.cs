@@ -14,6 +14,8 @@ public class SheepMove : SheepAction
 
     public bool isChose;
 
+    public Action sheepIdle;
+
     private void Awake()
     {
         icon = transform.GetChild(0).gameObject;
@@ -29,7 +31,8 @@ public class SheepMove : SheepAction
 
     private void Idle()
     {
-        
+        state = State.idle;
+        sheepIdle += Idle;
     }
 
     private void TouchSheep()

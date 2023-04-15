@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class PanelManager : MonoBehaviour
+public class ButtonManager : MonoBehaviour
 {
     [SerializeField] private GameObject storePanel;
     [SerializeField] private GameObject optionPanel;
@@ -44,11 +45,16 @@ public class PanelManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void CloseOptionBtnClick()
+    public void CloseOptionPanel()
     {
         isSetActive = false;
         optionPanel.SetActive(false);
         storeButton.interactable = true;
         Time.timeScale = 1f;
+    }
+
+    public void ExitBtnClick()
+    {
+        SceneManager.LoadScene("DevHMin");
     }
 }

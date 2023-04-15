@@ -5,6 +5,9 @@ using Enum;
 
 public class Boy : SheepAction
 {
+    [SerializeField] private float restTime;
+    bool isRest;
+
     void Awake()
     {
         collider = GameObject.FindWithTag("House").GetComponent<BoxCollider2D>();
@@ -12,12 +15,13 @@ public class Boy : SheepAction
 
     void Update()
     {
-        
+        Rest();
     }
 
     protected override void TouchThis()
     {
-        base.TouchThis();
+        if(!isRest)
+           base.TouchThis();
     }
 
     public override void RemoveEvent()
@@ -27,12 +31,13 @@ public class Boy : SheepAction
 
     public override void Water()
     {
-        base.Water();
+        //∏‘¿Ã¡÷±‚
+        PosInput.input.BoyBackOrg();
     }
 
     public override void Eat()
     {
-        base.Eat();
+        //∏‘¿Ã¡÷±‚
         PosInput.input.BoyBackOrg();
     }
 
@@ -44,7 +49,13 @@ public class Boy : SheepAction
 
     public override void Rest()
     {
-        base.Rest();
-        PosInput.input.BoyBackOrg();
+        isRest = true;
+        StartCoroutine(Resting());
+    }
+
+    public IEnumerator Resting()
+    {
+        yield return new WaitForSeconds(restTime);
+        isRest = false;
     }
 }

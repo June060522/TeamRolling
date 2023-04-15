@@ -15,7 +15,7 @@ public class SheepMove : SheepAction
     private void Awake()
     {
         icon = transform.GetChild(0).gameObject;
-        boy = GetComponent<Boy>();
+        boy = FindObjectOfType<Boy>();
         collider = this.GetComponent<BoxCollider2D>();
     }
 

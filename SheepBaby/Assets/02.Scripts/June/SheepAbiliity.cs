@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Enum;
 
 public class SheepAbiliity : MonoBehaviour
 {
-    public enum Stat
-    { fun, thirst, hungry, stress };
-
     [Header("¾ç ±âº» ½ºÅÝ")]
     //[SerializeField] float fun = 100f;
     [SerializeField] float thirst = 100f;

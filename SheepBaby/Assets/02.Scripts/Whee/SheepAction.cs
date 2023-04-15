@@ -59,6 +59,7 @@ public class SheepAction : MonoBehaviour
 
     public virtual void Wolf()
     {
+        //얜 미니게임 안함
         Debug.Log("bell");
     }
 

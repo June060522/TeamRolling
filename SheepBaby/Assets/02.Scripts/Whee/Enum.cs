@@ -11,6 +11,8 @@ namespace Enum
         eat,
         bell,
         cut,
+        wolf,
+        rest
     }
 
     [System.Serializable]
@@ -18,5 +20,13 @@ namespace Enum
     { 
         idle,
         act 
+    };
+
+    public enum Stat
+    {
+        fun,
+        thirst,
+        hungry,
+        stress 
     };
 }

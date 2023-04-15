@@ -34,7 +34,7 @@ public class PosInput : MonoBehaviour
     private void Awake()
     {
         input = this;
-        boy = GetComponent<Boy>();
+        boy = FindObjectOfType<Boy>();
     }
 
     public void GoPos(int number)
@@ -78,11 +78,16 @@ public class PosInput : MonoBehaviour
     {
         boy.state = Enum.State.act;
 
-        boy.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
-        .OnComplete(() =>
+        if (p.act == Act.rest)
+            boy.Rest();
+        else
         {
-            State(p.act);
-        });
+            boy.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                State(p.act);
+            });
+        }
     }
 
     public void SheepBackOrg(SheepMove sheep)
@@ -110,7 +115,7 @@ public class PosInput : MonoBehaviour
 
     void State(Act act)
     {
-        Action[] funtionEveny = { boy.Water, boy.Eat, boy.Wolf, boy.Rest };
+        Action[] funtionEveny = { boy.Water, boy.Eat, null, null, boy.Wolf, boy.Rest };
         funtionEveny[(int)act]();
     }
 }

@@ -17,7 +17,7 @@ public class SheepMove : SheepAction
     private void Awake()
     {
         icon = transform.GetChild(0).gameObject;
-        boy = GetComponent<Boy>();
+        boy = FindObjectOfType<Boy>();
         collider = this.GetComponent<BoxCollider2D>();
     }
 
@@ -37,8 +37,14 @@ public class SheepMove : SheepAction
 
     protected override void TouchThis()
     {
-        base.TouchThis();
-        boy.isChose = false;
+        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
+
+        if (hit.collider == collider)
+        {
+            base.TouchThis();
+            boy.isChose = false;
+        }
     }
 
     void TouchState()
@@ -46,27 +52,19 @@ public class SheepMove : SheepAction
         icon.SetActive(isChose);
     }
 
-    public override void Water()
-    {
-        base.Water();
-        PosInput.input.SheepBackOrg(this);
-    }
+    //�� true�ȿ��ٰ� bool�� �̴ϰ��� �Լ��ֱ�(�������϶� false, �� ������ true)
+    public override void Water() => StartCoroutine(MiniGameDelay(true));
 
-    public override void Eat()
-    {
-        base.Eat();
-        PosInput.input.SheepBackOrg(this);
-    }
+    public override void Eat() => StartCoroutine(MiniGameDelay(true));
 
-    public override void Bell()
-    {
-        base.Bell();
-        PosInput.input.SheepBackOrg(this);
-    }
+    public override void Bell() => StartCoroutine(MiniGameDelay(true));
 
-    public override void Cut()
+    public override void Cut() => StartCoroutine(MiniGameDelay(true));
+
+    IEnumerator MiniGameDelay(bool isClear)
     {
-        base.Cut();
+        while (!isClear)
+            yield return new WaitForSeconds(1.0f);
         PosInput.input.SheepBackOrg(this);
     }
 }

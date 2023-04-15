@@ -2,38 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Enum;
 
 public class SheepAbiliity : MonoBehaviour
 {
-    public enum Stat
-    { fun, thirst, hungry, stress };
-
     [Header("¾ç ±âº» ½ºÅÝ")]
     //[SerializeField] float fun = 100f;
     [SerializeField] float thirst = 100f;
     [SerializeField] float hungry = 100f;
     [SerializeField] float stress = 100f;
 
-    public float Thirst { get; private set; }
-    public float Hungry { get; private set; }
-    public float Stress { get; private set; }
+    public float Thirst { get { return thirst; } private set { } }
+    public float Hungry { get { return hungry; } private set { } }
+    public float Stress { get { return stress; } private set { } }
 
     private float lifeTime = 0f;
 
     private void Start()
     {
         StartCoroutine(SheepAbilityChange());
-        StateWindow();
     }
 
     public void Update()
     {
         lifeTime += Time.deltaTime;
-    }
-
-    private void StateWindow()
-    {
-
     }
 
     IEnumerator SheepAbilityChange()

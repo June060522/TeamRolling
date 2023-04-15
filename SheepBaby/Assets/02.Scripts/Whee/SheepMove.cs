@@ -31,8 +31,7 @@ public class SheepMove : SheepAction
 
     private void Idle()
     {
-        state = State.idle;
-        sheepIdle += Idle;
+        
     }
 
     protected override void TouchThis()

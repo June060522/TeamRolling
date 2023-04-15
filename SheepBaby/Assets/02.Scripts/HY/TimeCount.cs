@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering.Universal;
+using DG.Tweening;
 
 public class TimeCount : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class TimeCount : MonoBehaviour
     public float timer;
     public int dayCnt = 1;
 
-    private float dayChange = 30f;
+    private const float dayChange = 29f;
 
     private void Awake()
     {
@@ -35,21 +36,28 @@ public class TimeCount : MonoBehaviour
     public void Update()
     {
         timer += Time.deltaTime;
-        timeText.text = $"{timer:N2}";
+        timeText.text = $"{Mathf.FloorToInt(timer/60)} : {Mathf.FloorToInt(timer % 60)}";
 
         dayCntText.text = $"Day {dayCnt}";
     }
 
     IEnumerator DayCnt()
     {
-        globalLight.intensity = 1;
-        Debug.Log("day");
+        while (globalLight.intensity < 1)
+        {
+            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 1.1f, 0.2f);
+            yield return new WaitForSeconds(0.1f);
+        }
         yield return new WaitForSeconds(dayChange);
-        globalLight.intensity = 0.4F;
-        Debug.Log("night");
+
+        while (globalLight.intensity > 0.4f)
+        {
+            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 0.3f, 0.2f);
+            yield return new WaitForSeconds(0.1f);
+        }
         yield return new WaitForSeconds(dayChange);
+
         dayCnt++;
-        Debug.Log(dayCnt);
         StartCoroutine(DayCnt());
     }
 }

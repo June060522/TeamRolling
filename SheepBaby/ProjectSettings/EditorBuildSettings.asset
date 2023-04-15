@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/DevHMin.unity
     guid: 42679f378ad153045942f911e13a1ea1
+  - enabled: 1
+    path: Assets/01.Scenes/DevHyeyeon.unity
+    guid: d317ba8cdecb6574ba9cd6e98d1be149
   m_configObjects: {}

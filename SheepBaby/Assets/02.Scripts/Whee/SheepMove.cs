@@ -12,6 +12,8 @@ public class SheepMove : SheepAction
     private Boy boy;
     private GameObject icon;
 
+    public Action sheepIdle;
+
     private void Awake()
     {
         icon = transform.GetChild(0).gameObject;
@@ -29,7 +31,8 @@ public class SheepMove : SheepAction
 
     private void Idle()
     {
-        
+        state = State.idle;
+        sheepIdle += Idle;
     }
 
     protected override void TouchThis()

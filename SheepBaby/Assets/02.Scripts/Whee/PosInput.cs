@@ -37,10 +37,8 @@ public class PosInput : MonoBehaviour
     {
         if (state == Enum.State.idle)
         {
-            Debug.Log(boy.isChose);
             if (boy.isChose)
             {
-                Debug.Log(22);
                 Movement(posAction[number]);
                 state = Enum.State.act;
             }
@@ -80,7 +78,6 @@ public class PosInput : MonoBehaviour
             boy.Rest();
         else
         {
-            Debug.Log(33);
             boy.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
             .OnComplete(() =>
             {

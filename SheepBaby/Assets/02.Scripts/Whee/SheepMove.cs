@@ -29,7 +29,7 @@ public class SheepMove : SheepAction
 
     private void Idle()
     {
-        
+
     }
 
     protected override void TouchThis()
@@ -49,27 +49,19 @@ public class SheepMove : SheepAction
         icon.SetActive(isChose);
     }
 
-    public override void Water()
-    {
-        base.Water();
-        PosInput.input.SheepBackOrg(this);
-    }
+    //저 true안에다가 bool형 미니게임 함수넣기(실행중일땐 false, 다 끝나면 true)
+    public override void Water() => StartCoroutine(MiniGameDelay(true));
 
-    public override void Eat()
-    {
-        base.Eat();
-        PosInput.input.SheepBackOrg(this);
-    }
+    public override void Eat() => StartCoroutine(MiniGameDelay(true));
 
-    public override void Bell()
-    {
-        base.Bell();
-        PosInput.input.SheepBackOrg(this);
-    }
+    public override void Bell() => StartCoroutine(MiniGameDelay(true));
 
-    public override void Cut()
+    public override void Cut() => StartCoroutine(MiniGameDelay(true));
+
+    IEnumerator MiniGameDelay(bool isClear)
     {
-        base.Cut();
+        while (!isClear)
+            yield return new WaitForSeconds(1.0f);
         PosInput.input.SheepBackOrg(this);
     }
 }

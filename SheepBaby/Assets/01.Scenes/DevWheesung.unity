@@ -1698,6 +1698,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 905446839551594690, guid: f4646f5e6d1662d4e838d899569ef338, type: 3}
+      propertyPath: moveTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 905446839551594690, guid: f4646f5e6d1662d4e838d899569ef338, type: 3}
+      propertyPath: stayTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 905446839551594691, guid: f4646f5e6d1662d4e838d899569ef338, type: 3}
       propertyPath: m_RootOrder
       value: 4

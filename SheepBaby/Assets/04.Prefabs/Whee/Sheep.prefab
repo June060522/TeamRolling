@@ -212,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   isChose: 0
+  stayTime: 5
+  moveTime: 1
 --- !u!114 &-2425503331569890396
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 using Enum;
 using UnityEditor.Tilemaps;
 using UnityEditor.Build;
+using DG.Tweening;
 
 public class SheepMove : SheepAction
 {
@@ -13,6 +14,12 @@ public class SheepMove : SheepAction
     private GameObject icon;
 
     public Action sheepIdle;
+
+    [Header("Time")]
+    float idleTime;
+    public float stayTime;
+    public float reStayTime;
+    [SerializeField] private float moveTime;
 
     private void Awake()
     {
@@ -23,6 +30,8 @@ public class SheepMove : SheepAction
 
     private void Update()
     {
+        idleTime += Time.deltaTime;
+
         if (state == State.idle) Idle();
 
         if (Input.GetMouseButtonDown(0) && state == State.idle) TouchThis();
@@ -31,14 +40,19 @@ public class SheepMove : SheepAction
 
     private void Idle()
     {
-        
+        if (idleTime > reStayTime + moveTime)
+        {
+            idleTime = 0;
+            float movePos = UnityEngine.Random.Range(transform.position.x - 1f, transform.position.x + 1f);
+            transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear);
+        }
     }
 
     protected override void TouchThis()
     {
         Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
-
+        
         if (hit.collider == collider)
         {
             base.TouchThis();

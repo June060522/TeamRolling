@@ -1,6 +1,8 @@
 using Enum;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoyAbiliity : MonoBehaviour
@@ -20,6 +22,8 @@ public class BoyAbiliity : MonoBehaviour
     public void Update()
     {
         lifeTime += Time.deltaTime;
+
+        BoyDie();
     }
 
     IEnumerator BoyAbilityChange()
@@ -30,6 +34,14 @@ public class BoyAbiliity : MonoBehaviour
             chandeValue = lifeTime / 30 + 1;
             tired -= chandeValue;
             yield return new WaitForSeconds(3f);
+        }
+    }
+
+    void BoyDie()
+    {
+        if (tired <= 0)
+        {
+            GameOver.gameOver.BurnOutOver();
         }
     }
 }

@@ -52,9 +52,27 @@ public class SheepMove : SheepAction
     }
 
     //�� true�ȿ��ٰ� bool�� �̴ϰ��� �Լ��ֱ�(�������϶� false, �� ������ true)
-    public override void Water() => StartCoroutine(MiniGameDelay(true));
+    public override void Water()
+    {
+        if (Food.Instance.moisture >= 10)
+        {
+            Food.Instance.moisture -= 10;
+            StartCoroutine(MiniGameDelay(true));
+        }
+        else
+            PosInput.input.SheepBackOrg(this);
+    }
 
-    public override void Eat() => StartCoroutine(MiniGameDelay(true));
+    public override void Eat()
+    {
+        if (Food.Instance.food >= 10)
+        {
+            Food.Instance.food -= 10;
+            StartCoroutine(MiniGameDelay(true));
+        }
+        else
+            PosInput.input.SheepBackOrg(this);
+    }
 
     public override void Bell() => StartCoroutine(MiniGameDelay(true));
 

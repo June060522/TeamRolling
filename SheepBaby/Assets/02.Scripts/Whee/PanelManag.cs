@@ -9,6 +9,9 @@ public class PanelManag : MonoBehaviour
 {
     SheepMove[] sheeps;
     Boy boy;
+    BoyAbiliity boyAbiliity;
+
+    [SerializeField] private GameObject sheepUI, boyUI;
 
     [SerializeField] private Text thirstText;
     [SerializeField] private Text hungryText;
@@ -19,32 +22,45 @@ public class PanelManag : MonoBehaviour
     {
         sheeps = FindObjectsOfType<SheepMove>();
         boy = FindObjectOfType<Boy>();
+        boyAbiliity = FindObjectOfType<BoyAbiliity>();
     }
 
     void Update()
     {
+        PanelBrain();
+    }
+
+    void PanelBrain()
+    {
         if (boy.isChose)
         {
             BoyText();
+            sheepUI.SetActive(false);
+            boyUI.SetActive(true);
         }
         else
         {
             foreach (SheepMove sheep in sheeps)
             {
                 if (sheep.isChose)
+                {
                     SheepText(sheep.gameObject.GetComponent<SheepAbiliity>());
+
+                    sheepUI.SetActive(true);
+                    boyUI.SetActive(false);
+                }
             }
         }
     }
 
     void BoyText()
     {
-
+        tiredText.text = boyAbiliity.Tired.ToString();
     }
 
     void SheepText(SheepAbiliity sheep)
     {
-        tiredText.text = sheep.Thirst.ToString();
+        thirstText.text = sheep.Thirst.ToString();
         hungryText.text = sheep.Hungry.ToString();
         stressText.text = sheep.Stress.ToString();
     }

@@ -34,8 +34,14 @@ public class SheepMove : SheepAction
 
     protected override void TouchThis()
     {
-        base.TouchThis();
-        boy.isChose = false;
+        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
+
+        if (hit.collider == collider)
+        {
+            base.TouchThis();
+            boy.isChose = false;
+        }
     }
 
     void TouchState()

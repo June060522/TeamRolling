@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Interface;
 using DG.Tweening;
 using Enum;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
-using UnityEditor;
 
 [System.Serializable]
 public class PosAction
@@ -41,8 +37,10 @@ public class PosInput : MonoBehaviour
     {
         if (state == Enum.State.idle)
         {
+            Debug.Log(boy.isChose);
             if (boy.isChose)
             {
+                Debug.Log(22);
                 Movement(posAction[number]);
                 state = Enum.State.act;
             }
@@ -54,9 +52,9 @@ public class PosInput : MonoBehaviour
                     if (sheep.isChose)
                     {
                         Movement(posAction[number], sheep);
+                        state = Enum.State.act;
                     }
                 }
-                state = Enum.State.act;
             }
         }
     }
@@ -82,6 +80,7 @@ public class PosInput : MonoBehaviour
             boy.Rest();
         else
         {
+            Debug.Log(33);
             boy.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
             .OnComplete(() =>
             {
@@ -92,18 +91,16 @@ public class PosInput : MonoBehaviour
 
     public void SheepBackOrg(SheepMove sheep)
     {
-        state = Enum.State.idle;
-
         float orgPosRange = UnityEngine.Random.Range(orgPos.position.x - 2.5f, orgPos.position.x + 2.5f);
-        sheep.transform.DOMoveX(orgPosRange, 1 / moveSpeed).SetEase(Ease.Linear);
+        sheep.transform.DOMoveX(orgPosRange, 1 / moveSpeed).SetEase(Ease.Linear)
+        .OnComplete(() => { state = Enum.State.idle; });
         sheep.RemoveEvent();
     }
 
     public void BoyBackOrg()
     {
-        state = Enum.State.idle;
-
-        boy.transform.DOMoveX(housePos.position.x, 1 / moveSpeed).SetEase(Ease.Linear);
+        boy.transform.DOMoveX(housePos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
+        .OnComplete(() => { state = Enum.State.idle; });
         boy.RemoveEvent();
     }
 

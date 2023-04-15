@@ -14,16 +14,10 @@ public class SheepAction : MonoBehaviour
 
     protected virtual void TouchThis()
     {
-        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
-
-        if (hit.collider == collider)
-        {
-            SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
-            foreach (SheepMove sheep in sheeps)
-                sheep.isChose = false;
-            isChose = true;
-        }
+        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+        foreach (SheepMove sheep in sheeps)
+            sheep.isChose = false;
+        isChose = true;
     }
 
     public virtual void RemoveEvent()

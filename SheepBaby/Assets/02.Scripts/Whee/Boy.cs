@@ -15,13 +15,21 @@ public class Boy : SheepAction
 
     void Update()
     {
-        Rest();
+        if (Input.GetMouseButtonDown(0) && state == State.idle) TouchThis();
     }
 
     protected override void TouchThis()
     {
-        if(!isRest)
-           base.TouchThis();
+        if (!isRest)
+        {
+            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
+
+            if (hit.collider == collider)
+            {
+                base.TouchThis();
+            }
+        }
     }
 
     public override void RemoveEvent()

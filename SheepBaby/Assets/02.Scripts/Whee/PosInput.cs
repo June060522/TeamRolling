@@ -6,6 +6,8 @@ using Interface;
 using DG.Tweening;
 using Enum;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
+using UnityEditor;
 
 [System.Serializable]
 public class PosAction
@@ -22,32 +24,44 @@ public class PosInput : MonoBehaviour
 
     [Header("Pos")]
     [SerializeField] private Transform orgPos;
+    [SerializeField] private Transform housePos;
 
     [Header("Sheep")]
     [SerializeField] private float moveSpeed;
 
+    private Boy boy;
+
     private void Awake()
     {
         input = this;
+        boy = GetComponent<Boy>();
     }
 
     public void GoPos(int number)
     {
         if (state == Enum.State.idle)
         {
-            SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
-            foreach (SheepMove sheep in sheeps)
+            if (boy.isChose)
             {
-                if (sheep.isChose)
-                {
-                    SheepMovement(posAction[number], sheep);
-                }
+                Movement(posAction[number]);
+                state = Enum.State.act;
             }
-            state = Enum.State.act;
+            else
+            {
+                SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+                foreach (SheepMove sheep in sheeps)
+                {
+                    if (sheep.isChose)
+                    {
+                        Movement(posAction[number], sheep);
+                    }
+                }
+                state = Enum.State.act;
+            }
         }
     }
 
-    private void SheepMovement(PosAction p, SheepMove sheep)
+    private void Movement(PosAction p, SheepMove sheep)
     {
         sheep.state = Enum.State.act;
 
@@ -56,7 +70,18 @@ public class PosInput : MonoBehaviour
         sheep.transform.DOMoveX(posRange, 1 / moveSpeed).SetEase(Ease.Linear)
         .OnComplete(() =>
         {
-            SheepState(p.act, sheep);
+            State(p.act, sheep);
+        });
+    }
+
+    private void Movement(PosAction p)
+    {
+        boy.state = Enum.State.act;
+
+        boy.transform.DOMoveX(p.pos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
+        .OnComplete(() =>
+        {
+            State(p.act);
         });
     }
 
@@ -69,9 +94,23 @@ public class PosInput : MonoBehaviour
         sheep.RemoveEvent();
     }
 
-    void SheepState(Act act, SheepMove sheep)
+    public void BoyBackOrg()
     {
-        Action[] funtionEveny = { sheep.Water, sheep.Eat };
+        state = Enum.State.idle;
+
+        boy.transform.DOMoveX(housePos.position.x, 1 / moveSpeed).SetEase(Ease.Linear);
+        boy.RemoveEvent();
+    }
+
+    void State(Act act, SheepMove sheep)
+    {
+        Action[] funtionEveny = { sheep.Water, sheep.Eat, sheep.Bell, sheep.Cut };
+        funtionEveny[(int)act]();
+    }
+
+    void State(Act act)
+    {
+        Action[] funtionEveny = { boy.Water, boy.Eat, boy.Wolf, boy.Rest };
         funtionEveny[(int)act]();
     }
 }

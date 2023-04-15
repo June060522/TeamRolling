@@ -1,9 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using Enum;
 
 public class SheepAction : MonoBehaviour
 {
+    public State state = State.idle;
+
+    protected new BoxCollider2D collider;
+
+    public bool isChose;
+
+    protected virtual void TouchThis()
+    {
+        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
+
+        if (hit.collider == collider)
+        {
+            SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+            foreach (SheepMove sheep in sheeps)
+                sheep.isChose = false;
+            isChose = true;
+        }
+    }
+
+    public virtual void RemoveEvent()
+    {
+        state = State.idle;
+        isChose = false;
+    }
+
     public virtual void Water()
     {
         //bool gamePlay = ; bool형 미니게임 함수넣기, 미니게임 종료 후 꼭 false반환;
@@ -19,15 +47,15 @@ public class SheepAction : MonoBehaviour
         Debug.Log("eat");
     }
 
-    //public virtual void Bell()
-    //{
-    //    Debug.Log("bell");
-    //}
+    public virtual void Bell()
+    {
+        Debug.Log("bell");
+    }
 
-    //public virtual void Cut()
-    //{
-    //    Debug.Log("cut");
-    //}
+    public virtual void Cut()
+    {
+        Debug.Log("cut");
+    }
 
     public virtual void Wolf()
     {

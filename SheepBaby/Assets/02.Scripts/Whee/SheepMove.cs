@@ -4,19 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enum;
+using UnityEditor.Tilemaps;
+using UnityEditor.Build;
 
 public class SheepMove : SheepAction
 {
-    public State state = State.idle;
-
+    private Boy boy;
     private GameObject icon;
-    private new BoxCollider2D collider;
-
-    public bool isChose;
 
     private void Awake()
     {
         icon = transform.GetChild(0).gameObject;
+        boy = GetComponent<Boy>();
         collider = this.GetComponent<BoxCollider2D>();
     }
 
@@ -24,7 +23,8 @@ public class SheepMove : SheepAction
     {
         if (state == State.idle) Idle();
 
-        if (Input.GetMouseButtonDown(0) && state == State.idle) TouchSheep();
+        if (Input.GetMouseButtonDown(0) && state == State.idle) TouchThis();
+        TouchState();
     }
 
     private void Idle()
@@ -32,23 +32,15 @@ public class SheepMove : SheepAction
         
     }
 
-    private void TouchSheep()
+    protected override void TouchThis()
     {
-        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
-
-        if (hit.collider == collider)
-        {
-            isChose = !isChose;
-            icon.SetActive(isChose);
-        }
+        base.TouchThis();
+        boy.isChose = false;
     }
 
-    public void RemoveEvent()
+    void TouchState()
     {
-        state = State.idle;
-        isChose = false;
-        icon.SetActive(false);
+        icon.SetActive(isChose);
     }
 
     public override void Water()
@@ -63,15 +55,15 @@ public class SheepMove : SheepAction
         PosInput.input.SheepBackOrg(this);
     }
 
-    //public override void Bell()
-    //{
-    //    base.Bell();
-    //    PosInput.input.SheepBackOrg(this);
-    //}
+    public override void Bell()
+    {
+        base.Bell();
+        PosInput.input.SheepBackOrg(this);
+    }
 
-    //public override void Cut()
-    //{
-    //    base.Cut();
-    //    PosInput.input.SheepBackOrg(this);
-    //}
+    public override void Cut()
+    {
+        base.Cut();
+        PosInput.input.SheepBackOrg(this);
+    }
 }

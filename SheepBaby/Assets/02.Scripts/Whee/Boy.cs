@@ -39,18 +39,19 @@ public class Boy : SheepAction
 
     public override void Water()
     {
-        //∏‘¿Ã¡÷±‚
+        Food.Instance.moisture = 100;
         PosInput.input.BoyBackOrg();
     }
 
     public override void Eat()
     {
-        //∏‘¿Ã¡÷±‚
+        Food.Instance.food = 100;
         PosInput.input.BoyBackOrg();
     }
 
     public override void Wolf()
     {
+        //¥¡¥Î ¬—æ∆≥ª±‚
         base.Wolf();
         PosInput.input.BoyBackOrg();
     }

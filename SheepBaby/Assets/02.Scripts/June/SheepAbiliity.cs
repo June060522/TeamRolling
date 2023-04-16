@@ -26,6 +26,8 @@ public class SheepAbiliity : MonoBehaviour
     public void Update()
     {
         lifeTime += Time.deltaTime;
+
+        SheepDie();
     }
 
     IEnumerator SheepAbilityChange()
@@ -58,6 +60,14 @@ public class SheepAbiliity : MonoBehaviour
             case Stat.stress:
                 stress += changeValue;
                 break;
+        }
+    }
+
+    void SheepDie()
+    {
+        if (thirst <= 0 || hungry <= 0 || stress <= 0)
+        {
+            GameOver.gameOver.StateOver();
         }
     }
 }

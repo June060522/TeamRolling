@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    private SheepAbiliity sheepAbiliity;
+    public static GameOver gameOver;
 
-    private void Awake()
+    void Awake() => gameOver = this;
+
+    public void StateOver()
     {
-        sheepAbiliity = GetComponent<SheepAbiliity>();
+
     }
 
-    void Update()
+    public void HuntedOver()
     {
-        StateOver();
+
     }
 
-    void StateOver()
+    public void BurnOutOver()
     {
 
     }

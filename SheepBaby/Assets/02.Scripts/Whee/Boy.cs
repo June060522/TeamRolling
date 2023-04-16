@@ -5,12 +5,16 @@ using Enum;
 
 public class Boy : SheepAction
 {
+    BoyAbiliity boyAbiliity;
+
     [SerializeField] private float restTime;
+    [SerializeField] private float restAmount;
     bool isRest;
 
     void Awake()
     {
         collider = GameObject.FindWithTag("House").GetComponent<BoxCollider2D>();
+        boyAbiliity = gameObject.GetComponent<BoyAbiliity>();
     }
 
     void Update()
@@ -51,8 +55,7 @@ public class Boy : SheepAction
 
     public override void Wolf()
     {
-        //´Á´ë ÂÑ¾Æ³»±â
-        base.Wolf();
+        WolfSpawn.wolfSpawn.WolfRun();
         PosInput.input.BoyBackOrg();
     }
 
@@ -64,7 +67,11 @@ public class Boy : SheepAction
 
     public IEnumerator Resting()
     {
-        yield return new WaitForSeconds(restTime);
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(restTime/10);
+            boyAbiliity.tired += restAmount/10;
+        }
         isRest = false;
     }
 }

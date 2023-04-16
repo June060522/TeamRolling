@@ -8,9 +8,7 @@ using UnityEngine;
 public class BoyAbiliity : MonoBehaviour
 {
     [Header("소년 기본 스텟")]
-    [SerializeField] float tired = 100f;
-
-    public float Tired { get { return tired; } private set { } }
+    public float tired = 100f;
 
     private float lifeTime = 0f;
 
@@ -41,7 +39,7 @@ public class BoyAbiliity : MonoBehaviour
     {
         if (tired <= 0)
         {
-            GameOver.gameOver.BurnOutOver();
+            GameOver.gameOver.BurnOutOver(); 
         }
     }
 }

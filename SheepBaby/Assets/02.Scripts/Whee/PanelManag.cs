@@ -55,7 +55,7 @@ public class PanelManag : MonoBehaviour
 
     void BoyText()
     {
-        tiredText.text = boyAbiliity.Tired.ToString();
+        tiredText.text = boyAbiliity.tired.ToString();
     }
 
     void SheepText(SheepAbiliity sheep)

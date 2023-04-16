@@ -22,6 +22,7 @@ namespace Enum
         act 
     };
 
+    [System.Serializable]
     public enum Stat
     {
         fun,

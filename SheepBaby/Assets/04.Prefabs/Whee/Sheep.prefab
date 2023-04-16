@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -2425503331569890396}
   m_Layer: 0
   m_Name: Sheep
-  m_TagString: Untagged
+  m_TagString: Sheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,6 +213,7 @@ MonoBehaviour:
   state: 0
   isChose: 0
   stayTime: 5
+  reStayTime: 0
   moveTime: 1
 --- !u!114 &-2425503331569890396
 MonoBehaviour:

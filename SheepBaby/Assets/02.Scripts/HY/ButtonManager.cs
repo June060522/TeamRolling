@@ -53,6 +53,8 @@ public class ButtonManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void ReStartClick() => SceneManager.LoadScene("DevWheesung");
+
     public void ExitBtnClick()
     {
         SceneManager.LoadScene("DevHMin");

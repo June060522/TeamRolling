@@ -55,13 +55,13 @@ public class PanelManag : MonoBehaviour
 
     void BoyText()
     {
-        tiredText.text = boyAbiliity.tired.ToString();
+        tiredText.text =  Mathf.RoundToInt(boyAbiliity.tired).ToString();
     }
 
     void SheepText(SheepAbiliity sheep)
     {
-        thirstText.text = sheep.Thirst.ToString();
-        hungryText.text = sheep.Hungry.ToString();
-        stressText.text = sheep.Stress.ToString();
+        thirstText.text = Mathf.RoundToInt(sheep.Thirst).ToString();
+        hungryText.text = Mathf.RoundToInt(sheep.Hungry).ToString();
+        stressText.text = Mathf.RoundToInt(sheep.Stress).ToString();
     }
 }

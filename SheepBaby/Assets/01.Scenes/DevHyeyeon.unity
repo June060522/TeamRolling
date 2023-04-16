@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 197234807}
   m_Layer: 0
   m_Name: Sheep
-  m_TagString: Untagged
+  m_TagString: Sheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -697,16 +697,9 @@ MonoBehaviour:
   timeText: {fileID: 1467434934}
   dayCntText: {fileID: 849441730}
   globalLight: {fileID: 681848083}
-  nightLightColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.6313726}
-  dayLightColor: {r: 1, g: 1, b: 1, a: 1}
-  nightTimeCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   timer: 0
   dayCnt: 0
+  isNight: 0
 --- !u!1 &411108446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,6 +2814,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489239733}
   m_CullTransparentMesh: 1
+--- !u!1 &1518124451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1518124452}
+  - component: {fileID: 1518124453}
+  m_Layer: 0
+  m_Name: WolfSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1518124452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518124451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1023.1824, y: 539.33124, z: 0.0077729225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1518124453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518124451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd8cd975404a634d8170a9358a30426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1704448578
 GameObject:
   m_ObjectHideFlags: 0

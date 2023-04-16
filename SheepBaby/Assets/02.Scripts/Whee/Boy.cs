@@ -9,7 +9,7 @@ public class Boy : SheepAction
 
     [SerializeField] private float restTime;
     [SerializeField] private float restAmount;
-    bool isRest;
+    public bool isRest;
 
     void Awake()
     {
@@ -24,15 +24,12 @@ public class Boy : SheepAction
 
     protected override void TouchThis()
     {
-        if (!isRest)
-        {
-            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
+        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
 
-            if (hit.collider == collider)
-            {
-                base.TouchThis();
-            }
+        if (hit.collider == collider)
+        {
+            base.TouchThis();
         }
     }
 
@@ -63,6 +60,7 @@ public class Boy : SheepAction
     {
         isRest = true;
         StartCoroutine(Resting());
+        PosInput.input.BoyBackOrg();
     }
 
     public IEnumerator Resting()

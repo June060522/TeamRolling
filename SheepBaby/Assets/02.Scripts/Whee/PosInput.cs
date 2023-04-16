@@ -43,7 +43,7 @@ public class PosInput : MonoBehaviour
     {
         if (state == Enum.State.idle)
         {
-            if (boy.isChose)
+            if (boy.isChose && !boy.isRest)
             {
                 Movement(posAction[number]);
                 state = Enum.State.act;

@@ -13,7 +13,8 @@ public class SheepMove : SheepAction
     private Boy boy;
     private GameObject icon;
 
-    public Action sheepIdle;
+    private SheepAbiliity sheepAbiliity;
+    private MinigameManager minigameManager;
 
     [Header("Time")]
     float idleTime;
@@ -26,6 +27,9 @@ public class SheepMove : SheepAction
         icon = transform.GetChild(0).gameObject;
         boy = FindObjectOfType<Boy>();
         collider = this.GetComponent<BoxCollider2D>();
+
+        sheepAbiliity = FindObjectOfType<SheepAbiliity>();
+        minigameManager = FindObjectOfType<MinigameManager>();
     }
 
     private void Update()
@@ -43,7 +47,7 @@ public class SheepMove : SheepAction
         if (idleTime > reStayTime + moveTime)
         {
             idleTime = 0;
-            float movePos = UnityEngine.Random.Range(transform.position.x - 1f, transform.position.x + 1f);
+            float movePos = Mathf.Clamp(UnityEngine.Random.Range(transform.position.x - 1f, transform.position.x + 1f), -2.5f, 1.5f);
             transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear);
         }
     }
@@ -65,13 +69,12 @@ public class SheepMove : SheepAction
         icon.SetActive(isChose);
     }
 
-    //�� true�ȿ��ٰ� bool�� �̴ϰ��� �Լ��ֱ�(�������϶� false, �� ������ true)
     public override void Water()
     {
         if (Food.Instance.moisture >= 10)
         {
             Food.Instance.moisture -= 10;
-            StartCoroutine(MiniGameDelay(true));
+            StartCoroutine(MiniGameDelay(minigameManager.WaterMinigame(sheepAbiliity)));
         }
         else
             PosInput.input.SheepBackOrg(this);
@@ -82,15 +85,17 @@ public class SheepMove : SheepAction
         if (Food.Instance.food >= 10)
         {
             Food.Instance.food -= 10;
-            StartCoroutine(MiniGameDelay(true));
+            StartCoroutine(MiniGameDelay(minigameManager.EatMinigame(sheepAbiliity)));
         }
         else
             PosInput.input.SheepBackOrg(this);
     }
 
-    public override void Bell() => StartCoroutine(MiniGameDelay(true));
+    public override void Bell() 
+        => StartCoroutine(MiniGameDelay(minigameManager.BellMinigame(sheepAbiliity)));
 
-    public override void Cut() => StartCoroutine(MiniGameDelay(true));
+    public override void Cut() 
+        => StartCoroutine(MiniGameDelay(minigameManager.CutMinigame()));
 
     IEnumerator MiniGameDelay(bool isClear)
     {

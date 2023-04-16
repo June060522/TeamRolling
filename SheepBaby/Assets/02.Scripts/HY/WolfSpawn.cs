@@ -7,7 +7,7 @@ using Enum;
 public class WolfSpawn : MonoBehaviour
 {
     public static WolfSpawn wolfSpawn;
-    State state = State.idle;
+    public State state = State.idle;
 
     [SerializeField] private GameObject wolfSpawnPos;
     [SerializeField] private float wolfSpeed;
@@ -43,6 +43,7 @@ public class WolfSpawn : MonoBehaviour
             }
             catch { }
         }
+        else wolfRigidbody.velocity = Vector2.zero;
     }
 
     private void WolfAttack(Transform attackPos)

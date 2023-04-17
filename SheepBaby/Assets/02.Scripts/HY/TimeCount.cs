@@ -17,7 +17,7 @@ public class TimeCount : MonoBehaviour
     public int dayCnt = 1;
     public bool isNight = false;
 
-    private const float dayChange = 29f;
+    private const float dayChange = 9f;
 
     private void Awake()
     {

@@ -49,8 +49,8 @@ public class WolfSpawn : MonoBehaviour
     private void WolfAttack(Transform attackPos)
     {
         state = State.idle;
-        transform.DOMoveX(attackPos.position.x, 0.3f).SetEase(Ease.Linear);
-        GameOver.gameOver.HuntedOver();
+        transform.DOMoveX(attackPos.position.x, 0.3f).SetEase(Ease.Linear)
+        .OnComplete(() => { GameOver.gameOver.HuntedOver(); });
     }
 
     public void WolfRun()

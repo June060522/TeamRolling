@@ -33,11 +33,9 @@ public class GameOver : MonoBehaviour
 
     private void BaseOver()
     {
-        Time.timeScale = 0f;
         TimeCount.Instance.enabled = false;
         panel.SetActive(true);
-        Invoke("PanelOn", 1f);
+        gameoverPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
-
-    void PanelOn() => gameoverPanel.SetActive(true);
 }

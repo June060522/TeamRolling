@@ -10,6 +10,8 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Button storeButton;
     [SerializeField] private Button optionButton;
+    [SerializeField] private GameObject soundOnButton;
+    [SerializeField] private GameObject soundOffButton;
 
     public bool isSetActive = false;
 
@@ -51,6 +53,23 @@ public class ButtonManager : MonoBehaviour
         optionPanel.SetActive(false);
         storeButton.interactable = true;
         Time.timeScale = 1f;
+    }
+
+    public void SoundOnOff()
+    {
+        if (AudioListener.volume == 1)
+        {
+            soundOnButton.SetActive(false);
+            soundOffButton.SetActive(true);
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            soundOnButton.SetActive(true);
+            soundOffButton.SetActive(false);
+            AudioListener.volume = 1;
+        }
+
     }
 
     public void ExitBtnClick()

@@ -9,6 +9,8 @@ public class WolfSpawn : MonoBehaviour
     public static WolfSpawn wolfSpawn;
     public State state = State.idle;
 
+    private Animator animator;
+
     [SerializeField] private GameObject wolfSpawnPos;
     [SerializeField] private float wolfSpeed;
     [SerializeField] private float wolfCast;
@@ -19,6 +21,7 @@ public class WolfSpawn : MonoBehaviour
     {
         wolfSpawn = this;
         wolfRigidbody = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update() => WolfMove();
@@ -35,7 +38,10 @@ public class WolfSpawn : MonoBehaviour
         {
             wolfRigidbody.velocity = Vector2.right * wolfSpeed;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.25f), Vector2.right, wolfCast);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            animator.SetBool("Action", true);
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.0f), Vector2.right, wolfCast);
             try
             {
                 if (hit.collider.tag == "Sheep")
@@ -43,19 +49,29 @@ public class WolfSpawn : MonoBehaviour
             }
             catch { }
         }
-        else wolfRigidbody.velocity = Vector2.zero;
+        else
+        {
+            wolfRigidbody.velocity = Vector2.zero;
+            animator.SetBool("Action", false);
+        }
     }
 
     private void WolfAttack(Transform attackPos)
     {
         state = State.idle;
-        transform.DOMoveX(attackPos.position.x, 0.3f).SetEase(Ease.Linear)
+
+        animator.SetTrigger("Attack");
+
+        transform.DOMoveX(attackPos.position.x, 0.5f).SetEase(Ease.Linear)
         .OnComplete(() => { GameOver.gameOver.HuntedOver(); });
     }
 
     public void WolfRun()
     {
         state = State.idle;
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+
         float backPos = wolfSpawnPos.transform.position.x;
         transform.DOMoveX(backPos, 1f).SetEase(Ease.Linear);
     }

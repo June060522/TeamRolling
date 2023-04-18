@@ -12,6 +12,7 @@ public class PanelManag : MonoBehaviour
     BoyAbiliity boyAbiliity;
 
     [SerializeField] private GameObject sheepUI, boyUI;
+    [SerializeField] private GameObject sheepPrefit, boyPrefit;
 
     [SerializeField] private Text thirstText;
     [SerializeField] private Text hungryText;
@@ -37,6 +38,8 @@ public class PanelManag : MonoBehaviour
             BoyText();
             sheepUI.SetActive(false);
             boyUI.SetActive(true);
+            sheepPrefit.SetActive(false);
+            boyPrefit.SetActive(true);
         }
         else
         {
@@ -48,6 +51,8 @@ public class PanelManag : MonoBehaviour
 
                     sheepUI.SetActive(true);
                     boyUI.SetActive(false);
+                    sheepPrefit.SetActive(true);
+                    boyPrefit.SetActive(false);
                 }
             }
         }

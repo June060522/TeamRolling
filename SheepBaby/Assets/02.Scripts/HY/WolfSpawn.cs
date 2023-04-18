@@ -1,31 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using Enum;
 
 public class WolfSpawn : MonoBehaviour
 {
-    private TimeCount timeCount;
-    private int randomSpawn;
+    public static WolfSpawn wolfSpawn;
+    public State state = State.idle;
 
-    void Start()
+    [SerializeField] private GameObject wolfSpawnPos;
+    [SerializeField] private float wolfSpeed;
+    [SerializeField] private float wolfCast;
+
+    Rigidbody2D wolfRigidbody;
+
+    private void Awake()
     {
-        timeCount = FindObjectOfType<TimeCount>();
-        WolfRandomSpawn();
+        wolfSpawn = this;
+        wolfRigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
+    void Update() => WolfMove();
 
+    public IEnumerator WolfStart()
+    {
+        yield return new WaitForSeconds(Random.Range(5, 10));
+        state = State.act;
     }
 
-    IEnumerator WolfRandomSpawn()
+    private void WolfMove()
     {
-        if (timeCount.isNight == true)
-            randomSpawn = Random.Range(0, 10);
-        else if (timeCount.isNight == false)
-            randomSpawn = 0;
-        Debug.Log(randomSpawn);
-        yield return new WaitForSeconds(0.1f);
-        StartCoroutine(WolfRandomSpawn());
+        if (state == State.act)
+        {
+            wolfRigidbody.velocity = Vector2.right * wolfSpeed;
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.25f), Vector2.right, wolfCast);
+            try
+            {
+                if (hit.collider.tag == "Sheep")
+                    WolfAttack(hit.transform);
+            }
+            catch { }
+        }
+        else wolfRigidbody.velocity = Vector2.zero;
+    }
+
+    private void WolfAttack(Transform attackPos)
+    {
+        state = State.idle;
+        transform.DOMoveX(attackPos.position.x, 0.3f).SetEase(Ease.Linear)
+        .OnComplete(() => { GameOver.gameOver.HuntedOver(); });
+    }
+
+    public void WolfRun()
+    {
+        state = State.idle;
+        float backPos = wolfSpawnPos.transform.position.x;
+        transform.DOMoveX(backPos, 1f).SetEase(Ease.Linear);
     }
 }

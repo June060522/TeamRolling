@@ -58,6 +58,7 @@ public class TimeCount : MonoBehaviour
             globalLight.intensity = Mathf.Lerp(globalLight.intensity, 0.3f, 0.2f);
             yield return new WaitForSeconds(0.1f);
         }
+        StartCoroutine(WolfSpawn.wolfSpawn.WolfStart());
         yield return new WaitForSeconds(dayChange);
 
         dayCnt++;

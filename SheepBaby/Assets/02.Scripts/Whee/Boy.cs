@@ -5,12 +5,16 @@ using Enum;
 
 public class Boy : SheepAction
 {
+    BoyAbiliity boyAbiliity;
+
     [SerializeField] private float restTime;
-    bool isRest;
+    [SerializeField] private float restAmount;
+    public bool isRest;
 
     void Awake()
     {
         collider = GameObject.FindWithTag("House").GetComponent<BoxCollider2D>();
+        boyAbiliity = gameObject.GetComponent<BoyAbiliity>();
     }
 
     void Update()
@@ -20,15 +24,12 @@ public class Boy : SheepAction
 
     protected override void TouchThis()
     {
-        if (!isRest)
-        {
-            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
+        Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
 
-            if (hit.collider == collider)
-            {
-                base.TouchThis();
-            }
+        if (hit.collider == collider)
+        {
+            base.TouchThis();
         }
     }
 
@@ -39,19 +40,19 @@ public class Boy : SheepAction
 
     public override void Water()
     {
-        //∏‘¿Ã¡÷±‚
+        Food.Instance.moisture = 100;
         PosInput.input.BoyBackOrg();
     }
 
     public override void Eat()
     {
-        //∏‘¿Ã¡÷±‚
+        Food.Instance.food = 100;
         PosInput.input.BoyBackOrg();
     }
 
     public override void Wolf()
     {
-        base.Wolf();
+        WolfSpawn.wolfSpawn.WolfRun();
         PosInput.input.BoyBackOrg();
     }
 
@@ -59,11 +60,16 @@ public class Boy : SheepAction
     {
         isRest = true;
         StartCoroutine(Resting());
+        PosInput.input.BoyBackOrg();
     }
 
     public IEnumerator Resting()
     {
-        yield return new WaitForSeconds(restTime);
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(restTime/10);
+            boyAbiliity.tired += restAmount/10;
+        }
         isRest = false;
     }
 }

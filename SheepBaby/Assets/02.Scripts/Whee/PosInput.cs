@@ -31,13 +31,19 @@ public class PosInput : MonoBehaviour
     {
         input = this;
         boy = FindObjectOfType<Boy>();
+
+        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+        foreach (SheepMove sheep in sheeps)
+        {
+            sheep.reStayTime = UnityEngine.Random.Range(sheep.stayTime - 2f, sheep.stayTime + 2f);
+        }
     }
 
     public void GoPos(int number)
     {
         if (state == Enum.State.idle)
         {
-            if (boy.isChose)
+            if (boy.isChose && !boy.isRest)
             {
                 Movement(posAction[number]);
                 state = Enum.State.act;

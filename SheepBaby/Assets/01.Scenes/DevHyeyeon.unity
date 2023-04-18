@@ -869,10 +869,10 @@ RectTransform:
   m_Father: {fileID: 973810675}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 30, y: -270}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &376057239
 MonoBehaviour:
@@ -917,7 +917,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 376057240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930512399}
+        m_TargetAssemblyTypeName: MinigameStore, Assembly-CSharp
+        m_MethodName: PuzzleButtonEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376057240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,7 +1255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &572408772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1610,10 +1622,10 @@ RectTransform:
   m_Father: {fileID: 973810675}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &626114909
 MonoBehaviour:
@@ -1658,7 +1670,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 626114910}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930512399}
+        m_TargetAssemblyTypeName: MinigameStore, Assembly-CSharp
+        m_MethodName: BallButtonEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &626114910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1732,10 +1756,10 @@ RectTransform:
   m_Father: {fileID: 973810675}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 30, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &680054520
 MonoBehaviour:
@@ -1780,7 +1804,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 680054521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930512399}
+        m_TargetAssemblyTypeName: MinigameStore, Assembly-CSharp
+        m_MethodName: ColoringToolButtonEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &680054521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3156,7 +3192,7 @@ GameObject:
   - component: {fileID: 973810676}
   - component: {fileID: 973810678}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3390,10 +3426,10 @@ RectTransform:
   m_Father: {fileID: 973810675}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: -270}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1089939973
 MonoBehaviour:
@@ -3438,7 +3474,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1089939974}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930512399}
+        m_TargetAssemblyTypeName: MinigameStore, Assembly-CSharp
+        m_MethodName: ConsoleControllerButtonEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1089939974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4568,10 +4616,10 @@ RectTransform:
   m_Father: {fileID: 973810675}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 570, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1519965705
 MonoBehaviour:
@@ -4616,7 +4664,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1519965706}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930512399}
+        m_TargetAssemblyTypeName: MinigameStore, Assembly-CSharp
+        m_MethodName: SnackButtonEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1519965706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5070,6 +5130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1930512398}
   - component: {fileID: 1930512397}
+  - component: {fileID: 1930512399}
   m_Layer: 0
   m_Name: ButtonManager
   m_TagString: Untagged
@@ -5091,10 +5152,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storePanel: {fileID: 572408771}
   optionPanel: {fileID: 2029192608}
-  storeButton: {fileID: 835709974}
-  optionButton: {fileID: 767530078}
   soundOnButton: {fileID: 343452741}
   soundOffButton: {fileID: 1439681359}
+  storeButton: {fileID: 835709974}
+  optionButton: {fileID: 767530078}
   isSetActive: 0
 --- !u!4 &1930512398
 Transform:
@@ -5104,13 +5165,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930512396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 752.4613, y: 659.76447, z: -8.081278}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1930512399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930512396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c843212dc604f648b16ab6473998e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coloringTool: {fileID: 680054520}
+  ball: {fileID: 626114909}
+  snack: {fileID: 1519965705}
+  puzzle: {fileID: 376057239}
+  consoleController: {fileID: 1089939973}
 --- !u!1 &1943366867
 GameObject:
   m_ObjectHideFlags: 0

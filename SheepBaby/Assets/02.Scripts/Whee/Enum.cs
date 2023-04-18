@@ -29,4 +29,13 @@ namespace Enum
         hungry,
         stress 
     };
+
+    public enum Play
+    {
+        coloringtool,
+        ball,
+        snack,
+        puzzle,
+        consoleController
+    };
 }

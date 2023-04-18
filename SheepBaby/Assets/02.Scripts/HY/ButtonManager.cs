@@ -8,18 +8,17 @@ public class ButtonManager : MonoBehaviour
 {
     [SerializeField] private GameObject storePanel;
     [SerializeField] private GameObject optionPanel;
-    [SerializeField] private Button storeButton;
-    [SerializeField] private Button optionButton;
+
     [SerializeField] private GameObject soundOnButton;
     [SerializeField] private GameObject soundOffButton;
 
-    public bool isSetActive = false;
+    [SerializeField] private Button storeButton;
+    [SerializeField] private Button optionButton;
 
-    private TimeCount timeCount;
+    public bool isSetActive = false;
 
     void Start()
     {
-        timeCount = GetComponent<TimeCount>();
         isSetActive = false;
     }
 

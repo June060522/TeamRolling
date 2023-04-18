@@ -55,6 +55,7 @@ public class PosInput : MonoBehaviour
                 {
                     if (sheep.isChose)
                     {
+                        DOTween.KillAll();
                         Movement(posAction[number], sheep);
                         state = Enum.State.act;
                     }

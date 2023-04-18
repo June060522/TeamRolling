@@ -37,6 +37,7 @@ namespace Enum
         ball,
         snack,
         puzzle,
-        consoleController
+        consoleController,
+        dd,
     };
 }

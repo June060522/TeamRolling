@@ -10,11 +10,14 @@ using DG.Tweening;
 
 public class SheepMove : SheepAction
 {
+    public Play play;
+
     private Boy boy;
     private GameObject icon;
 
     private SheepAbiliity sheepAbiliity;
     private MinigameManager minigameManager;
+    private MinigameStore minigameStore;
     public Animator animator;
 
     [Header("Time")]
@@ -30,6 +33,7 @@ public class SheepMove : SheepAction
 
         sheepAbiliity = FindObjectOfType<SheepAbiliity>();
         minigameManager = FindObjectOfType<MinigameManager>();
+        minigameStore = FindObjectOfType<MinigameStore>();
         animator = gameObject.GetComponent<Animator>();
     }
 
@@ -79,6 +83,16 @@ public class SheepMove : SheepAction
     {
         if (pos > transform.position.x) transform.rotation = Quaternion.Euler(0, 180, 0);
         else transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
+    private bool PossibleGame(bool aa)
+    {
+        if (aa)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
     public override void Water()

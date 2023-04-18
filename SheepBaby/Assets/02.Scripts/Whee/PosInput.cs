@@ -82,6 +82,8 @@ public class PosInput : MonoBehaviour
     {
         boy.state = Enum.State.act;
 
+        boy.transform.rotation = Quaternion.Euler(0, 0, 0);
+
         if (p.act == Act.rest)
             boy.Rest();
         else
@@ -110,8 +112,11 @@ public class PosInput : MonoBehaviour
 
     public void BoyBackOrg()
     {
+        boy.transform.rotation = Quaternion.Euler(0, 180, 0);
+
         boy.transform.DOMoveX(housePos.position.x, 1 / moveSpeed).SetEase(Ease.Linear)
         .OnComplete(() => { state = Enum.State.idle; });
+
         boy.RemoveEvent();
     }
 

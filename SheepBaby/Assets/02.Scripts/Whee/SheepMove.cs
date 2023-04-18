@@ -15,21 +15,22 @@ public class SheepMove : SheepAction
 
     private SheepAbiliity sheepAbiliity;
     private MinigameManager minigameManager;
+    public Animator animator;
 
     [Header("Time")]
     float idleTime;
     public float stayTime;
-    public float reStayTime;
+    [HideInInspector] public float reStayTime;
     [SerializeField] private float moveTime;
 
     private void Awake()
     {
-        icon = transform.GetChild(0).gameObject;
         boy = FindObjectOfType<Boy>();
-        collider = this.GetComponent<BoxCollider2D>();
+        collider = this.GetComponent<CapsuleCollider2D>();
 
         sheepAbiliity = FindObjectOfType<SheepAbiliity>();
         minigameManager = FindObjectOfType<MinigameManager>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -46,9 +47,14 @@ public class SheepMove : SheepAction
     {
         if (idleTime > reStayTime + moveTime)
         {
+            animator.SetBool("Move", true);
+
             idleTime = 0;
             float movePos = Mathf.Clamp(UnityEngine.Random.Range(transform.position.x - 1f, transform.position.x + 1f), -2.5f, 1.5f);
-            transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear);
+            SheepAnim(movePos);
+
+            transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear)
+                .OnComplete(() => { animator.SetBool("Move", false); });
         }
     }
 
@@ -66,7 +72,13 @@ public class SheepMove : SheepAction
 
     void TouchState()
     {
-        icon.SetActive(isChose);
+        
+    }
+
+    public void SheepAnim(float pos)
+    {
+        if (pos > transform.position.x) transform.rotation = Quaternion.Euler(0, 180, 0);
+        else transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public override void Water()

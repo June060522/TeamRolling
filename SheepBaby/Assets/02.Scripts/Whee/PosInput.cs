@@ -66,8 +66,10 @@ public class PosInput : MonoBehaviour
     private void Movement(PosAction p, SheepMove sheep)
     {
         sheep.state = Enum.State.act;
+        sheep.animator.SetBool("Move", true);
 
         float posRange = UnityEngine.Random.Range(p.pos.position.x - 1, p.pos.position.x + 1);
+        sheep.SheepAnim(posRange);
 
         sheep.transform.DOMoveX(posRange, 1 / moveSpeed).SetEase(Ease.Linear)
         .OnComplete(() =>
@@ -95,8 +97,14 @@ public class PosInput : MonoBehaviour
     public void SheepBackOrg(SheepMove sheep)
     {
         float orgPosRange = UnityEngine.Random.Range(orgPos.position.x - 2.5f, orgPos.position.x + 2.5f);
+        sheep.SheepAnim(orgPosRange);
+
         sheep.transform.DOMoveX(orgPosRange, 1 / moveSpeed).SetEase(Ease.Linear)
-        .OnComplete(() => { state = Enum.State.idle; });
+        .OnComplete(() => 
+        { 
+            state = Enum.State.idle; 
+            sheep.animator.SetBool("Move", false);
+        });
         sheep.RemoveEvent();
     }
 

@@ -8,7 +8,7 @@ public class SheepAction : MonoBehaviour
 {
     public State state = State.idle;
 
-    protected new BoxCollider2D collider;
+    protected new CapsuleCollider2D collider;
 
     public bool isChose;
 

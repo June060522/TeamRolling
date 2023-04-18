@@ -13,7 +13,7 @@ public class Boy : SheepAction
 
     void Awake()
     {
-        collider = GameObject.FindWithTag("House").GetComponent<BoxCollider2D>();
+        collider = GameObject.FindWithTag("House").GetComponent<CapsuleCollider2D>();
         boyAbiliity = gameObject.GetComponent<BoyAbiliity>();
     }
 

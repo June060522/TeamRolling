@@ -33,9 +33,9 @@ public class PanelManag : MonoBehaviour
 
     void PanelBrain()
     {
+        BoyText();
         if (boy.isChose)
         {
-            BoyText();
             sheepUI.SetActive(false);
             boyUI.SetActive(true);
             sheepPrefit.SetActive(false);

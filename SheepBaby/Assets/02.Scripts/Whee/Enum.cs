@@ -38,6 +38,5 @@ namespace Enum
         snack,
         puzzle,
         consoleController,
-        dd,
     };
 }

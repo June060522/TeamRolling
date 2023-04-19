@@ -54,7 +54,8 @@ public class SheepMove : SheepAction
             animator.SetBool("Move", true);
 
             idleTime = 0;
-            float movePos = Mathf.Clamp(UnityEngine.Random.Range(transform.position.x - 1f, transform.position.x + 1f), -2.5f, 1.5f);
+            float movePos = Mathf.Clamp(UnityEngine.Random.Range(transform.position.x - 1f, 
+                transform.position.x + 1f), -2.5f, 1.5f);
             SheepAnim(movePos);
 
             transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear)
@@ -85,19 +86,19 @@ public class SheepMove : SheepAction
         else transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    private bool PossibleGame(bool aa)
+    private bool PossibleGame()
     {
-        if (aa)
+        foreach (string key in minigameStore.keys)
         {
-            return true;
+            if (play.ToString() == key)
+                return true;
         }
-        else
-            return false;
+        return false;
     }
 
     public override void Water()
     {
-        if (Food.Instance.moisture >= 10)
+        if (Food.Instance.moisture >= 10 && PossibleGame())
         {
             Food.Instance.moisture -= 10;
             StartCoroutine(MiniGameDelay(minigameManager.WaterMinigame(sheepAbiliity)));
@@ -108,7 +109,7 @@ public class SheepMove : SheepAction
 
     public override void Eat()
     {
-        if (Food.Instance.food >= 10)
+        if (Food.Instance.food >= 10 && PossibleGame())
         {
             Food.Instance.food -= 10;
             StartCoroutine(MiniGameDelay(minigameManager.EatMinigame(sheepAbiliity)));

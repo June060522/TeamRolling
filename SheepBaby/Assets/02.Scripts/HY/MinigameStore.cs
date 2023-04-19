@@ -5,9 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using Enum;
 
+[System.Serializable]
+public class ButtonData
+{
+    public Play playEnum;
+    public Button button;
+}
+
 public class MinigameStore : MonoBehaviour
 {
-    public Play play;
+    public List<ButtonData> buttonList = new List<ButtonData>();
+    public List<string> keys = new List<string>();
 
     BoyAbiliity boyAbiliity;
 
@@ -19,12 +27,12 @@ public class MinigameStore : MonoBehaviour
 
     private void Awake() => boyAbiliity = FindObjectOfType<BoyAbiliity>();
 
-    public void ButtonEnable(Play playEnum ,Button button)
+    public void ButtonEnable(int num)
     {
         if (boyAbiliity.paper > 0)
         {
-             = Play.dd;
-            button.enabled = false;
+            keys.Add(buttonList[num].playEnum.ToString());
+            buttonList[num].button.enabled = false;
 
             boyAbiliity.paper--;
         }

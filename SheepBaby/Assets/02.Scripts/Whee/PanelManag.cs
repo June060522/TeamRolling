@@ -11,13 +11,18 @@ public class PanelManag : MonoBehaviour
     Boy boy;
     BoyAbiliity boyAbiliity;
 
+    [Header("PanelObject")]
     [SerializeField] private GameObject sheepUI, boyUI;
     [SerializeField] private GameObject sheepPrefit, boyPrefit;
 
+    [Header("SheepText")]
     [SerializeField] private Text thirstText;
     [SerializeField] private Text hungryText;
     [SerializeField] private Text stressText;
+
+    [Header("BoyText")]
     [SerializeField] private Text tiredText;
+    [SerializeField] private Text paperText;
 
     private void Awake()
     {
@@ -61,6 +66,7 @@ public class PanelManag : MonoBehaviour
     void BoyText()
     {
         tiredText.text = $"Tired : {Mathf.RoundToInt(boyAbiliity.tired)}";
+        paperText.text = $"Paper : {Mathf.RoundToInt(boyAbiliity.paper)}";
     }
 
     void SheepText(SheepAbiliity sheep)

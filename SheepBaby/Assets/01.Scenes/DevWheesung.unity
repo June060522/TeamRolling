@@ -1185,6 +1185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: -1
+  range: 10
 --- !u!1 &259270547
 GameObject:
   m_ObjectHideFlags: 0
@@ -9401,7 +9402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1577014553
 MonoBehaviour:
   m_ObjectHideFlags: 0

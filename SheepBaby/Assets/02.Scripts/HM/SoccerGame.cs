@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SoccerGame : MonoBehaviour
 {
+    /*public Transform ArrowTrm;
+    public Transform PowerBarTrm;*/
+
     public float speed = 10f; // 축구공 이동 속도
     public Vector2 KeyInput;
     private float MaxPower = 15, chargSpeed = 20;
-    private float CurrnetPower = 0;
+    public float CurrnetPower = 0;
 
     private Rigidbody2D rb;
 
@@ -33,18 +36,25 @@ public class SoccerGame : MonoBehaviour
 
     private void Shoot()
     {
-        Fire();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             CurrnetPower += chargSpeed * Time.deltaTime;
             CurrnetPower = Mathf.Clamp(CurrnetPower, 0, MaxPower);
+            Debug.Log(CurrnetPower);
+            
         }
-        
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Fire();
+        }
+
+        //PowerBarTrm.localScale = new Vector3(CurrnetPower / MaxPower, 1, 1);
     }
 
     private void Fire()
     {
-        rb.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero; //지금속도 초기화후에 
         rb.AddForce(KeyInput.normalized * CurrnetPower, ForceMode2D.Impulse);
         CurrnetPower = 0;
     }

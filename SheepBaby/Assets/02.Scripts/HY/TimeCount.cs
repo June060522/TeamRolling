@@ -25,6 +25,8 @@ public class TimeCount : MonoBehaviour
             Instance = this;
         else
             Debug.LogError("TimeCount is Multiple");
+
+        Time.timeScale = 1;
     }
 
     void Start()

@@ -10,6 +10,8 @@ public class BoyAbiliity : MonoBehaviour
     [Header("소년 기본 스텟")]
     public float tired = 100f;
 
+    public int paper = 0;
+
     private float lifeTime = 0f;
 
     private void Start()

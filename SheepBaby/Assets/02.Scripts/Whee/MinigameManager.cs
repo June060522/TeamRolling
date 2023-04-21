@@ -47,12 +47,12 @@ public class MinigameManager : MonoBehaviour
 
     public bool CutMinigame()
     {
-        float plusValue = 0;
+        int plusValue = 0;
 
         //미니게임 구현(return false를 꼭 넣을것)
 
         //미니게임 다 하면...
-        boyAbiliity.tired += plusValue;
+        boyAbiliity.paper += plusValue;
         return true;
     }
 }

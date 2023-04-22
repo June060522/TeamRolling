@@ -332,7 +332,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &729942471
 GameObject:
@@ -605,6 +605,8 @@ MonoBehaviour:
   - {fileID: 5248068029443110023, guid: a81cef4168a790d40a26303c82216061, type: 3}
   time: {fileID: 1781507786}
   noneSprite: {fileID: 21300000, guid: 8449424130366669394c047eb2dda9ff, type: 3}
+  isplaying: 0
+  isDelay: 0
 --- !u!114 &1119240797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1618316381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +803,7 @@ RectTransform:
   - {fileID: 1119240795}
   - {fileID: 1781507785}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

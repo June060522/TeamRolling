@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,16 @@ public class PictureMinigame : MonoBehaviour
 
     private GridLayoutGroup gridLayoutGroup;
     [SerializeField] Picture[] pictures;
+    [SerializeField] TextMeshProUGUI time;
+    [SerializeField] Sprite noneSprite;
+    public bool isplaying = false;
+    public bool isDelay = false;
     int maxcnt = 0;
     int iCnt = 0;
     float playtime = 0f;
-    bool isplaying = false;
 
-    int pickFirst = -1;
-    int pickSecond = -2;
+    GameObject pickFirst = null;
+    GameObject pickSecond = null;
     
 
     private void Awake()
@@ -43,23 +47,48 @@ public class PictureMinigame : MonoBehaviour
     {
         if (isplaying)
             playtime += Time.deltaTime;
+        if(playtime > 15)
+            playtime = 15;
+        time.text = string.Format("{0:0.#}",15 - playtime);
 
-        if (playtime >= 10f)
+        if ((playtime >= 15f || iCnt == 0) && isplaying)
             EndGame();
 
-        if(pickFirst >= 0 && pickSecond >= 0)
+        if(pickFirst != null && pickSecond != null && !isDelay)
         {
-            if (pickFirst == pickSecond)
+            isDelay = true;
+            if (pickFirst.GetComponent<Picture>().index == pickSecond.GetComponent<Picture>().index)
             {
-                Debug.Log("¸Â¾Ò½À´Ï´Ù.");
+                StartCoroutine(Answer());
             }
-            else if(pickFirst != pickSecond)
+            else
             {
-                Debug.Log("Æ²·È½À´Ï´Ù.");
+                StartCoroutine(Wrong());
             }
-            pickFirst = -1;
-            pickSecond = -2;
         }
+    }
+
+    IEnumerator Answer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        pickFirst.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        pickSecond.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        iCnt--;
+        pickFirst = null;
+        pickSecond = null;
+        isDelay = false;
+    }
+
+    IEnumerator Wrong()
+    {
+        yield return new WaitForSeconds(0.2f);
+        pickFirst.GetComponent<Button>().interactable = true;
+        pickSecond.GetComponent<Button>().interactable = true;
+        pickFirst.GetComponent<Image>().sprite = noneSprite;
+        pickSecond.GetComponent<Image>().sprite = noneSprite;
+        pickFirst = null;
+        pickSecond = null;
+        isDelay = false;
     }
     public void MiniGameSetting(int cnt)
     {
@@ -83,8 +112,21 @@ public class PictureMinigame : MonoBehaviour
         {
             int idx = Random.Range(0, s.Count);
             Picture p = Instantiate(s[idx],this.transform);
+            p.GetComponent<Image>().sprite = p.GetComponent<Picture>().image;
             s.RemoveAt(idx);
-        }    
+        }
+
+        StartCoroutine(ShowPicture());
+    }
+
+    IEnumerator ShowPicture()
+    {
+        yield return new WaitForSeconds(3f);
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).GetComponent<Image>().sprite = noneSprite;
+        }
+        isplaying = true;
     }
 
     public void EndGame()
@@ -93,13 +135,15 @@ public class PictureMinigame : MonoBehaviour
             Debug.Log("ÀÌ±è");
         else
             Debug.Log("Áü");
+
+        isplaying = false;
     }
 
-    public void Pick(int idx)
+    public void Pick(GameObject g)
     {
-        if (pickFirst < 0)
-            pickFirst = idx;
+        if (pickFirst == null)
+            pickFirst = g;
         else
-            pickSecond = idx;
+            pickSecond = g;
     }
 }

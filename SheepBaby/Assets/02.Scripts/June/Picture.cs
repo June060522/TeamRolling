@@ -15,7 +15,11 @@ public class Picture : MonoBehaviour
 
     public void Click()
     {
-        PictureMinigame.instance.Pick(index);
-        GetComponent<Button>().interactable = false;
+        if(PictureMinigame.instance.isplaying)
+        {
+            GetComponent<Button>().interactable = false;
+            GetComponent<Image>().sprite = image;
+            PictureMinigame.instance.Pick(this.gameObject);
+        }
     }
 }

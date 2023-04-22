@@ -11,6 +11,7 @@ public class SoccerGame : MonoBehaviour
     public Vector2 KeyInput;
     private float MaxPower = 15, chargSpeed = 20;
     public float CurrnetPower = 0;
+    public float shootSpeed = 10;
 
     private Rigidbody2D rb;
 
@@ -19,7 +20,7 @@ public class SoccerGame : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // 축구공의 Rigidbody 컴포넌트 가져오기
     }
 
-    void FixedUpdate()
+    void Update()
     {
         BallMove();
         Shoot();
@@ -28,10 +29,8 @@ public class SoccerGame : MonoBehaviour
     public void BallMove()
     {
         float moveHorizontal = Input.GetAxis("Horizontal"); // 좌우 이동
-        float moveVertical = Input.GetAxis("Vertical"); // 앞뒤 이동
-
         Vector3 movement = new Vector3(moveHorizontal, 0f, 0f); // 이동 벡터 생성
-        rb.velocity = new Vector3(moveHorizontal * speed, 0f, 0f);
+        rb.velocity = movement.normalized * speed;
     }
 
     private void Shoot()
@@ -41,11 +40,11 @@ public class SoccerGame : MonoBehaviour
             CurrnetPower += chargSpeed * Time.deltaTime;
             CurrnetPower = Mathf.Clamp(CurrnetPower, 0, MaxPower);
             Debug.Log(CurrnetPower);
-            
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            Debug.Log("뗏다");
             Fire();
         }
 
@@ -54,8 +53,14 @@ public class SoccerGame : MonoBehaviour
 
     private void Fire()
     {
-        rb.velocity = Vector2.zero; //지금속도 초기화후에 
-        rb.AddForce(KeyInput.normalized * CurrnetPower, ForceMode2D.Impulse);
+        rb.velocity = Vector2.zero; // 현재 속도 초기화
+
+        // 자연스러운 파워 계산
+        float power = Mathf.Pow(CurrnetPower / MaxPower, 2) * MaxPower;
+
+        // 일정한 속도로 나가도록 속도를 조정하며 AddForce 대신 velocity 값을 사용
+        rb.velocity = transform.right * shootSpeed * power;
+
         CurrnetPower = 0;
     }
 }

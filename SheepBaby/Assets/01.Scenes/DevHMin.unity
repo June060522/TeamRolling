@@ -674,6 +674,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614710073}
   m_CullTransparentMesh: 1
+--- !u!1 &662906476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662906477}
+  - component: {fileID: 662906478}
+  m_Layer: 0
+  m_Name: WallManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662906477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662906476}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 3.0500002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1790990234}
+  - {fileID: 1601825603}
+  - {fileID: 1291569693}
+  m_Father: {fileID: 1292636180}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662906478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662906476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6326f337e27c2469cdd5339e807767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBall: 0
+  NoGoalText: {fileID: 1792920015}
 --- !u!1 &829733831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1410,6 @@ GameObject:
   - component: {fileID: 1291569693}
   - component: {fileID: 1291569692}
   - component: {fileID: 1291569694}
-  - component: {fileID: 1291569695}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Untagged
@@ -1429,12 +1477,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291569691}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 3.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1292636180}
-  m_RootOrder: 4
+  m_Father: {fileID: 662906477}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1291569694
 BoxCollider2D:
@@ -1462,20 +1510,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1291569695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291569691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6326f337e27c2469cdd5339e807767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBall: 0
-  NoGoalText: {fileID: 1792920015}
 --- !u!1 &1292636179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,9 +1540,7 @@ Transform:
   m_Children:
   - {fileID: 1494504021}
   - {fileID: 829733833}
-  - {fileID: 1790990234}
-  - {fileID: 1601825603}
-  - {fileID: 1291569693}
+  - {fileID: 662906477}
   - {fileID: 1308191471}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1547,7 +1579,7 @@ RectTransform:
   - {fileID: 1940183335}
   - {fileID: 1792920014}
   m_Father: {fileID: 1292636180}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2135,7 +2167,6 @@ GameObject:
   - component: {fileID: 1601825603}
   - component: {fileID: 1601825602}
   - component: {fileID: 1601825604}
-  - component: {fileID: 1601825605}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -2203,12 +2234,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601825601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 3.05, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1292636180}
-  m_RootOrder: 3
+  m_Father: {fileID: 662906477}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1601825604
 BoxCollider2D:
@@ -2236,20 +2267,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1601825605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601825601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6326f337e27c2469cdd5339e807767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBall: 0
-  NoGoalText: {fileID: 1792920015}
 --- !u!1 &1609451624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2461,6 @@ GameObject:
   - component: {fileID: 1790990234}
   - component: {fileID: 1790990233}
   - component: {fileID: 1790990235}
-  - component: {fileID: 1790990236}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -2512,12 +2528,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790990232}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 4.23, z: 0}
-  m_LocalScale: {x: 0.40000004, y: 6, z: 1}
+  m_LocalPosition: {x: -3, y: 1.1799998, z: 0}
+  m_LocalScale: {x: 0.40000007, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1292636180}
-  m_RootOrder: 2
+  m_Father: {fileID: 662906477}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &1790990235
 BoxCollider2D:
@@ -2545,20 +2561,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1790990236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790990232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6326f337e27c2469cdd5339e807767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBall: 0
-  NoGoalText: {fileID: 1792920015}
 --- !u!1 &1792920013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,7 +2619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NoGoal
+  m_text: NoGoal!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2626,8 +2628,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278247679
+  m_fontColor: {r: 1, g: 0.8791206, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2644,15 +2646,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2660,7 +2662,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

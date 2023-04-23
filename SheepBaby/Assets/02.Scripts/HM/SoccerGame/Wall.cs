@@ -15,6 +15,22 @@ public class Wall : MonoBehaviour
         Instance = this;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        collision.gameObject.SetActive(false);
+        if (isBall)
+        {
+            NoGoalText.text = "NoGoal";
+            collision.gameObject.SetActive(true);
+        }
+        else
+        {
+            NoGoalText.text = "";
+        }
+
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -23,13 +39,6 @@ public class Wall : MonoBehaviour
 
     private void NoGoal()
     {
-        if (isBall)
-        {
-            NoGoalText.text = "NoGoal";
-        }
-        else
-        {
-            NoGoalText.text = "";
-        }
+        
     }
 }

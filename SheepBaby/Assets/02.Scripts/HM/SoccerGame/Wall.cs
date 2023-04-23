@@ -8,10 +8,11 @@ public class Wall : MonoBehaviour
     [SerializeField] bool isBall;
     [SerializeField] TextMeshProUGUI NoGoalText;
 
-    // Start is called before the first frame update
-    void Start()
+    public static Wall Instance;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -22,9 +23,13 @@ public class Wall : MonoBehaviour
 
     private void NoGoal()
     {
-        if (isBall == true)
+        if (isBall)
         {
-
+            NoGoalText.text = "NoGoal";
+        }
+        else
+        {
+            NoGoalText.text = "";
         }
     }
 }

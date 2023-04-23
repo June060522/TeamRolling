@@ -22,7 +22,7 @@ public class SoccerGame : MonoBehaviour
     void Update()
     {
         if(a)
-        BallMove();
+            BallMove();
         Shoot();
     }
 
@@ -30,12 +30,11 @@ public class SoccerGame : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal"); // ÁÂ¿ì ÀÌµ¿
         Vector3 movement = new Vector3(moveHorizontal, 0f, 0f); // ÀÌµ¿ º¤ÅÍ »ý¼º
-        //rb.velocity = movement.normalized * speed;
+        rb.velocity = movement.normalized * speed;
     }
 
     private void Shoot()
     {
-        a = false;
         if (Input.GetKey(KeyCode.Space))
         {
             CurrnetPower += chargSpeed * Time.deltaTime;
@@ -45,9 +44,8 @@ public class SoccerGame : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            a = false;
             rb.AddForce(transform.up * 1 * CurrnetPower,ForceMode2D.Impulse);
-            
-            //Debug.Log("¶Â´Ù");
             //Fire();
         }
         //PowerBarTrm.localScale = new Vector3(CurrnetPower / MaxPower, 1, 1);

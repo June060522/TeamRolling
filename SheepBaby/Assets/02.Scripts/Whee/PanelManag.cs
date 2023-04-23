@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PanelManag : MonoBehaviour
 {
-    SheepMove[] sheeps;
+    MinigameSheepMove[] sheeps;
     Boy boy;
     BoyAbiliity boyAbiliity;
 
@@ -26,7 +26,7 @@ public class PanelManag : MonoBehaviour
 
     private void Awake()
     {
-        sheeps = FindObjectsOfType<SheepMove>();
+        sheeps = FindObjectsOfType<MinigameSheepMove>();
         boy = FindObjectOfType<Boy>();
         boyAbiliity = FindObjectOfType<BoyAbiliity>();
     }
@@ -48,7 +48,7 @@ public class PanelManag : MonoBehaviour
         }
         else
         {
-            foreach (SheepMove sheep in sheeps)
+            foreach (MinigameSheepMove sheep in sheeps)
             {
                 if (sheep.isChose)
                 {

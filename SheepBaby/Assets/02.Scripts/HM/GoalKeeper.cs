@@ -9,13 +9,13 @@ public class GoalKeeper : MonoBehaviour
     public float jumpInterval = 3f; // 골키퍼 점프 간격
     public Transform ballTransform; // 축구공의 Transform
 
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private bool isJumping = false;
     private bool isMovingLeft = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
@@ -23,7 +23,7 @@ public class GoalKeeper : MonoBehaviour
         // 골키퍼 좌우 이동
         float moveHorizontal = isMovingLeft ? -1f : 1f; // 이전 방향으로 이동
         Vector3 movement = new Vector3(moveHorizontal, 0f, 0f);
-        rb.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(transform.position + moveSpeed * Time.fixedDeltaTime * movement);
 
         // 축구공과의 거리 계산
         float distance = Vector3.Distance(transform.position, ballTransform.position);
@@ -50,7 +50,7 @@ public class GoalKeeper : MonoBehaviour
     {
         yield return new WaitForSeconds(jumpInterval);
 
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
         isJumping = false;
     }
 }

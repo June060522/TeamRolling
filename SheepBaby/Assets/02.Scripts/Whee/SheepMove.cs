@@ -8,7 +8,7 @@ using UnityEditor.Tilemaps;
 using UnityEditor.Build;
 using DG.Tweening;
 
-public class SheepMove : SheepAction
+public class MinigameSheepMove : SheepAction
 {
     public Play play;
 

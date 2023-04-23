@@ -31,6 +31,7 @@ namespace Enum
         stress 
     };
 
+    [System.Serializable]
     public enum Play
     {
         coloringtool,

@@ -38,6 +38,7 @@ public class PictureMinigame : MonoBehaviour
         isplaying = false;
         playtime = 0;
     }
+
     private void Start()
     {
         MiniGameSetting(4);
@@ -51,8 +52,8 @@ public class PictureMinigame : MonoBehaviour
             playtime = 15;
         time.text = string.Format("{0:0.#}",15 - playtime);
 
-        if ((playtime >= 15f || iCnt == 0) && isplaying)
-            EndGame();
+        //if ((playtime >= 15f || iCnt == 0) && isplaying)
+        //    EndGame();
 
         if(pickFirst != null && pickSecond != null && !isDelay)
         {
@@ -129,14 +130,27 @@ public class PictureMinigame : MonoBehaviour
         isplaying = true;
     }
 
-    public void EndGame()
+    public bool EndGame(out float value)
     {
-        if (iCnt == 0)
-            Debug.Log("ÀÌ±ט");
-        else
-            Debug.Log("Áü");
+        if (playtime >= 15f)
+        {
+            if (iCnt == 0)
+            {
+                Debug.Log("ÀÌ±ט");
+                value = 30 - (playtime / 2);
+                return true;
+            }
+            else
+            {
+                Debug.Log("Áü");
+                value = 0;
+                return true;
+            }
+        }
 
         isplaying = false;
+        value = 0;
+        return false;
     }
 
     public void Pick(GameObject g)

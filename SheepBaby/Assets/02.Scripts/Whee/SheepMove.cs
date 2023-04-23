@@ -98,28 +98,23 @@ public class MinigameSheepMove : SheepAction
 
     public override void Water()
     {
-        if (Food.Instance.moisture >= 10 && PossibleGame())
-        {
-            Food.Instance.moisture -= 10;
-            StartCoroutine(MiniGameDelay(minigameManager.WaterMinigame(sheepAbiliity)));
-        }
-        else
-            PosInput.input.SheepBackOrg(this);
+        Food.Instance.moisture -= 10;
+        StartCoroutine(MiniGameDelay(minigameManager.WaterMinigame(sheepAbiliity)));
     }
 
     public override void Eat()
     {
-        if (Food.Instance.food >= 10 && PossibleGame())
-        {
-            Food.Instance.food -= 10;
-            StartCoroutine(MiniGameDelay(minigameManager.EatMinigame(sheepAbiliity)));
-        }
+        Food.Instance.food -= 10;
+        StartCoroutine(MiniGameDelay(minigameManager.EatMinigame(sheepAbiliity)));
+    }
+
+    public override void Bell()
+    {
+        if (PossibleGame())
+            StartCoroutine(MiniGameDelay(minigameManager.BellMinigame(sheepAbiliity, play)));
         else
             PosInput.input.SheepBackOrg(this);
     }
-
-    public override void Bell() 
-        => StartCoroutine(MiniGameDelay(minigameManager.BellMinigame(sheepAbiliity)));
 
     public override void Cut() 
         => StartCoroutine(MiniGameDelay(minigameManager.CutMinigame()));
@@ -127,7 +122,7 @@ public class MinigameSheepMove : SheepAction
     IEnumerator MiniGameDelay(bool isClear)
     {
         while (!isClear)
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.2f);
         PosInput.input.SheepBackOrg(this);
     }
 }

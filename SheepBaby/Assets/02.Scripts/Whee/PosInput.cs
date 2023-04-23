@@ -32,8 +32,8 @@ public class PosInput : MonoBehaviour
         input = this;
         boy = FindObjectOfType<Boy>();
 
-        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
-        foreach (SheepMove sheep in sheeps)
+        MinigameSheepMove[] sheeps = FindObjectsOfType<MinigameSheepMove>();
+        foreach (MinigameSheepMove sheep in sheeps)
         {
             sheep.reStayTime = UnityEngine.Random.Range(sheep.stayTime - 2f, sheep.stayTime + 2f);
         }
@@ -50,8 +50,8 @@ public class PosInput : MonoBehaviour
             }
             else
             {
-                SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
-                foreach (SheepMove sheep in sheeps)
+                MinigameSheepMove[] sheeps = FindObjectsOfType<MinigameSheepMove>();
+                foreach (MinigameSheepMove sheep in sheeps)
                 {
                     if (sheep.isChose)
                     {
@@ -64,7 +64,7 @@ public class PosInput : MonoBehaviour
         }
     }
 
-    private void Movement(PosAction p, SheepMove sheep)
+    private void Movement(PosAction p, MinigameSheepMove sheep)
     {
         sheep.state = Enum.State.act;
         sheep.animator.SetBool("Move", true);
@@ -97,7 +97,7 @@ public class PosInput : MonoBehaviour
         }
     }
 
-    public void SheepBackOrg(SheepMove sheep)
+    public void SheepBackOrg(MinigameSheepMove sheep)
     {
         float orgPosRange = UnityEngine.Random.Range(orgPos.position.x - 2.5f, orgPos.position.x + 2.5f);
         sheep.SheepAnim(orgPosRange);
@@ -121,7 +121,7 @@ public class PosInput : MonoBehaviour
         boy.RemoveEvent();
     }
 
-    void State(Act act, SheepMove sheep)
+    void State(Act act, MinigameSheepMove sheep)
     {
         Action[] funtionEveny = { sheep.Water, sheep.Eat, sheep.Bell, sheep.Cut };
         funtionEveny[(int)act]();

@@ -7,6 +7,6 @@ namespace Interface
     public interface IPosEvent
     {
         public void AddEvent();
-        public void RemoveEvent(SheepMove sheep);
+        public void RemoveEvent(MinigameSheepMove sheep);
     }
 }

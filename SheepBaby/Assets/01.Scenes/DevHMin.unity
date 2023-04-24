@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WinText: {fileID: 817369197}
-  soccerGame: {fileID: 0}
+  soccerGame: {fileID: 1494504019}
 --- !u!1 &1308191470
 GameObject:
   m_ObjectHideFlags: 0

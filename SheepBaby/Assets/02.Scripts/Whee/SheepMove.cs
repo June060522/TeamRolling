@@ -8,7 +8,7 @@ using UnityEditor.Tilemaps;
 using UnityEditor.Build;
 using DG.Tweening;
 
-public class MinigameSheepMove : SheepAction
+public class SheepMove : SheepAction
 {
     public Play play;
 
@@ -110,8 +110,12 @@ public class MinigameSheepMove : SheepAction
 
     public override void Bell()
     {
+        Debug.Log(-1);
         if (PossibleGame())
+        {
+            Debug.Log(0);
             StartCoroutine(MiniGameDelay(minigameManager.BellMinigame(sheepAbiliity, play)));
+        }
         else
             PosInput.input.SheepBackOrg(this);
     }

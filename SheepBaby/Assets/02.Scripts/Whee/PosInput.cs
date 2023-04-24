@@ -16,7 +16,8 @@ public class PosInput : MonoBehaviour
 {
     public static PosInput input;
     public PosAction[] posAction = new PosAction[0];
-    public Enum.State state = Enum.State.idle;
+    public State state = Enum.State.idle;
+    private WolfSpawn wolfSpawn;
 
     [Header("Pos")]
     [SerializeField] private Transform orgPos;
@@ -27,15 +28,21 @@ public class PosInput : MonoBehaviour
 
     private Boy boy;
 
+    private void Awake()
+        => wolfSpawn = FindObjectOfType<WolfSpawn>();
+
     private void Start()
     {
         input = this;
         boy = FindObjectOfType<Boy>();
 
-        MinigameSheepMove[] sheeps = FindObjectsOfType<MinigameSheepMove>();
-        foreach (MinigameSheepMove sheep in sheeps)
+        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+        foreach (SheepMove sheep in sheeps)
         {
             sheep.reStayTime = UnityEngine.Random.Range(sheep.stayTime - 2f, sheep.stayTime + 2f);
+
+            Play[] plays = { Play.coloringtool, Play.ball, Play.snack, Play.puzzle, Play.consoleController};
+            sheep.play = plays[UnityEngine.Random.Range(0, plays.Length)];
         }
     }
 
@@ -45,16 +52,27 @@ public class PosInput : MonoBehaviour
         {
             if (boy.isChose && !boy.isRest)
             {
+                if (wolfSpawn.state == Enum.State.idle)
+                {
+                    Debug.Log("¾ÈµÅ µ¹¾Æ°¡2");
+                    return;
+                }
                 Movement(posAction[number]);
                 state = Enum.State.act;
             }
             else
             {
-                MinigameSheepMove[] sheeps = FindObjectsOfType<MinigameSheepMove>();
-                foreach (MinigameSheepMove sheep in sheeps)
+                SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+                foreach (SheepMove sheep in sheeps)
                 {
                     if (sheep.isChose)
                     {
+                        if ((posAction[number].act == Act.water && Food.Instance.moisture < 10) ||
+                            (posAction[number].act == Act.eat && Food.Instance.food < 10))
+                        {
+                            Debug.Log("¾ÈµÅ µ¹¾Æ°¡");
+                            return;
+                        }
                         DOTween.KillAll();
                         Movement(posAction[number], sheep);
                         state = Enum.State.act;
@@ -64,7 +82,7 @@ public class PosInput : MonoBehaviour
         }
     }
 
-    private void Movement(PosAction p, MinigameSheepMove sheep)
+    private void Movement(PosAction p, SheepMove sheep)
     {
         sheep.state = Enum.State.act;
         sheep.animator.SetBool("Move", true);
@@ -97,7 +115,7 @@ public class PosInput : MonoBehaviour
         }
     }
 
-    public void SheepBackOrg(MinigameSheepMove sheep)
+    public void SheepBackOrg(SheepMove sheep)
     {
         float orgPosRange = UnityEngine.Random.Range(orgPos.position.x - 2.5f, orgPos.position.x + 2.5f);
         sheep.SheepAnim(orgPosRange);
@@ -121,7 +139,7 @@ public class PosInput : MonoBehaviour
         boy.RemoveEvent();
     }
 
-    void State(Act act, MinigameSheepMove sheep)
+    void State(Act act, SheepMove sheep)
     {
         Action[] funtionEveny = { sheep.Water, sheep.Eat, sheep.Bell, sheep.Cut };
         funtionEveny[(int)act]();

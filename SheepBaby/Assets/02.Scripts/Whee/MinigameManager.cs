@@ -9,12 +9,14 @@ public class MinigameManager : MonoBehaviour
 
     PictureMinigame pictureMinigame;
 
+    [SerializeField] private GameObject picturePanel;
+
     private void Awake()
     {
         boyAbiliity = FindObjectOfType<BoyAbiliity>();
         pictureMinigame = FindObjectOfType<PictureMinigame>();
 
-        pictureMinigame.enabled = false;
+        //pictureMinigame.enabled = false;
     }
 
     public bool WaterMinigame(SheepAbiliity sheepAbiliity)
@@ -41,6 +43,7 @@ public class MinigameManager : MonoBehaviour
 
     public bool BellMinigame(SheepAbiliity sheepAbiliity, Play play)
     {
+        Debug.Log(1);
         //미니게임 구현(return false를 꼭 넣을것)
         switch (play)
         {
@@ -71,13 +74,19 @@ public class MinigameManager : MonoBehaviour
 
     bool Puzzle(SheepAbiliity sheepAbiliity)
     {
+        Debug.Log(2);
         float plusValue = 0;
 
+        picturePanel.SetActive(true);
         pictureMinigame.enabled = true;
+
         if (pictureMinigame.EndGame(out plusValue))
         {
             sheepAbiliity.ChangeStat(Stat.stress, plusValue);
+
             pictureMinigame.enabled = false;
+            picturePanel.SetActive(false);
+
             return true;
         }
         else

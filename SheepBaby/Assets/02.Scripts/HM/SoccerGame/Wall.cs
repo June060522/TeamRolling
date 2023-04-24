@@ -6,7 +6,7 @@ using TMPro;
 public class Wall : MonoBehaviour
 {
     [SerializeField] bool isBall;
-    [SerializeField] TextMeshProUGUI NoGoalText;
+    
 
     public static Wall Instance;
 
@@ -15,7 +15,7 @@ public class Wall : MonoBehaviour
         Instance = this;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.gameObject.SetActive(false);
         if (isBall)
@@ -29,7 +29,7 @@ public class Wall : MonoBehaviour
         }
 
 
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

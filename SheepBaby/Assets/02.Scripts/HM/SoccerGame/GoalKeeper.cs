@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalKeeper : MonoBehaviour
+public class GoalKeeper : Starping
 {
     public float moveSpeed = 5f; // 골키퍼 이동 속도
     public Transform ballTransform; // 축구공의 Transform
     public bool Ball;
 
-    private Rigidbody2D rb;
     private bool isMovingLeft = false;
 
     void Start()
@@ -51,7 +50,7 @@ public class GoalKeeper : MonoBehaviour
 
         else
         {
-            Debug.Log("못 막았다");
+            
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoccerGame : MonoBehaviour
+public class SoccerGame : Starping
 {
     /*public Transform ArrowTrm;
     public Transform PowerBarTrm;*/
@@ -12,7 +12,6 @@ public class SoccerGame : MonoBehaviour
     private float MaxPower = 40, chargSpeed = 20;
     public float CurrnetPower = 0;
     bool a = true;
-    private Rigidbody2D rb;
 
     void Awake()
     {

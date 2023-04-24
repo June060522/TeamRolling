@@ -27,7 +27,7 @@ public class PosInput : MonoBehaviour
 
     private Boy boy;
 
-    private void Awake()
+    private void Start()
     {
         input = this;
         boy = FindObjectOfType<Boy>();

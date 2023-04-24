@@ -1,49 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
+using Enum;
+
+[System.Serializable]
+public class ButtonData
+{
+    public Play playEnum;
+    public Button button;
+}
 
 public class MinigameStore : MonoBehaviour
 {
-    [SerializeField] private Button coloringTool;
-    [SerializeField] private Button ball;
-    [SerializeField] private Button snack;
-    [SerializeField] private Button puzzle;
-    [SerializeField] private Button consoleController;
+    public List<ButtonData> buttonList = new List<ButtonData>();
+    public List<string> keys = new List<string>();
 
-    public bool isBuyColoringTool = false;
-    public bool isBuyball = false;
-    public bool isBuysnack = false;
-    public bool isBuypuzzle = false;
-    public bool isBuyconsoleController = false;
+    BoyAbiliity boyAbiliity;
 
-    public void ColoringToolButtonEnable()
+    public bool isBuyColoringTool { get; private set; }
+    public bool isBuyball { get; private set; }
+    public bool isBuysnack { get; private set; }
+    public bool isBuypuzzle { get; private set; }
+    public bool isBuyconsoleController { get; private set; }
+
+    private void Awake() => boyAbiliity = FindObjectOfType<BoyAbiliity>();
+
+    public void ButtonEnable(int num)
     {
-        coloringTool.enabled = false;
-        isBuyColoringTool = true;
-    }
+        if (boyAbiliity.paper > 0)
+        {
+            keys.Add(buttonList[num].playEnum.ToString());
+            buttonList[num].button.enabled = false;
 
-    public void BallButtonEnable()
-    {
-        ball.enabled = false;
-        isBuyball = true;
-    }
-
-    public void SnackButtonEnable()
-    {
-        snack.enabled = false;
-        isBuysnack = true;
-    }
-
-    public void PuzzleButtonEnable()
-    {
-        puzzle.enabled = false;
-        isBuypuzzle = true;
-    }
-
-    public void ConsoleControllerButtonEnable()
-    {
-        consoleController.enabled = false;
-        isBuyconsoleController = true;
+            boyAbiliity.paper--;
+        }
     }
 }

@@ -7,11 +7,17 @@ public class GameOver : MonoBehaviour
 {
     public static GameOver gameOver;
 
+    private BoyAbiliity boyAbiliity;
+
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject gameoverPanel;
     [SerializeReference] private Text gameoverText;
 
-    void Awake() => gameOver = this;
+    void Awake()
+    {
+        gameOver = this;
+        boyAbiliity = FindObjectOfType<BoyAbiliity>();
+    }
 
     public void StateOver()
     {
@@ -33,9 +39,13 @@ public class GameOver : MonoBehaviour
 
     private void BaseOver()
     {
-        TimeCount.Instance.enabled = false;
+        float paperAmount = PlayerPrefs.GetFloat("Paper") + boyAbiliity.paper;
+        PlayerPrefs.SetFloat("Paper", paperAmount);
+
         panel.SetActive(true);
         gameoverPanel.SetActive(true);
+
+        TimeCount.Instance.enabled = false;
         Time.timeScale = 0f;
     }
 }

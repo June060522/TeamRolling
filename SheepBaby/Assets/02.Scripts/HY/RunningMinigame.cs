@@ -15,6 +15,7 @@ public class RunningMinigame : MonoBehaviour
     void Update()
     {
         GamePanelOn();
+
     }
 
     public void GamePanelOn()

@@ -7,7 +7,7 @@ public class Scissor : MonoBehaviour
 {
     public GameObject fur; // ±ðÀ» ¾ç ¸ðµ¨
     public int RandomInt = 10;
-    private float scissorSpeed = 10;
+    private float scissorSpeed = 100;
 
     public TextMeshProUGUI RandomText;
 

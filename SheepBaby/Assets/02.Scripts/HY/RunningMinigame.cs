@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RunningMinigame : MonoBehaviour
 {
     [SerializeField] private GameObject gamePanel;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         GamePanelOn();
-
     }
 
     public void GamePanelOn()

@@ -16,7 +16,7 @@ public class PictureMinigame : MonoBehaviour
     public bool isplaying = false;
     public bool isDelay = false;
     int maxcnt = 0;
-    int iCnt = 0;
+    int iCnt = 100;
     float playtime = 0f;
 
     GameObject pickFirst = null;
@@ -35,12 +35,16 @@ public class PictureMinigame : MonoBehaviour
 
     private void OnEnable()
     {
+        if (transform.childCount != 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(gameObject.transform.GetChild(i).gameObject);
+            }
+        }
         isplaying = false;
         playtime = 0;
-    }
 
-    private void Start()
-    {
         MiniGameSetting(4);
     }
 
@@ -132,23 +136,21 @@ public class PictureMinigame : MonoBehaviour
 
     public bool EndGame(out float value)
     {
-        if (playtime >= 15f)
+        Debug.Log("°¨ÁöÁß...");
+        if (iCnt == 0)
         {
-            if (iCnt == 0)
-            {
-                Debug.Log("ÀÌ±è");
-                value = 30 - (playtime / 2);
-                return true;
-            }
-            else
-            {
-                Debug.Log("Áü");
-                value = 0;
-                return true;
-            }
+            Debug.Log("ÀÌ±è");
+            value = 30 - (playtime / 2);
+            return true;
+        }
+        else if(playtime >= 15)
+        {
+            Debug.Log("Áü");//³»°¡ ÀÌ°å´Âµ¥????? ³»°¡ ÀÌ°å´Ù°í ¾ß ³»°¡ ÀÌ±è
+            value = 0;
+            return true;
         }
 
-        isplaying = false;
+        //isplaying = false;
         value = 0;
         return false;
     }

@@ -8835,7 +8835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   wolfSpawnPos: {fileID: 18811144}
-  wolfSpeed: 0.4
+  wolfSpeed: 0.8
   wolfCast: 1.5
 --- !u!50 &1548484405
 Rigidbody2D:

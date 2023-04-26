@@ -15,6 +15,7 @@ public class SheepSponManager : MonoBehaviour
         {
             GameObject newSheep = Instantiate(sheep, new Vector3(i, -0.02f, 0), Quaternion.identity);
             newSheep.transform.parent = sheepEmple.transform;
+            newSheep.tag = "Sheep";
         }
     }
 }

@@ -2,89 +2,116 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enum;
+using DG.Tweening;
 
 public class MinigameManager : MonoBehaviour
 {
     BoyAbiliity boyAbiliity;
-
-    PictureMinigame pictureMinigame;
 
     [SerializeField] private GameObject picturePanel;
 
     private void Awake()
     {
         boyAbiliity = FindObjectOfType<BoyAbiliity>();
-        pictureMinigame = FindObjectOfType<PictureMinigame>();
 
         //pictureMinigame.enabled = false;
     }
 
-    public bool WaterMinigame(SheepAbiliity sheepAbiliity)
+    public IEnumerator WaterMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity)
     {
-        float plusValue = 0;
-
-        //미니게임 구현(return false를 꼭 넣을것)
-
-        //미니게임 다 하면...
-        sheepAbiliity.ChangeStat(Stat.thirst, plusValue);
-        return true;
-    }
-
-    public bool EatMinigame(SheepAbiliity sheepAbiliity)
-    {
-        float plusValue = 0;
-
-        //미니게임 구현(return false를 꼭 넣을것)
-
-        //미니게임 다 하면...
-        sheepAbiliity.ChangeStat(Stat.hungry, plusValue);
-        return true;
-    }
-
-    public bool BellMinigame(SheepAbiliity sheepAbiliity, Play play)
-    {
-        Debug.Log(1);
-        //미니게임 구현(return false를 꼭 넣을것)
-        switch (play)
+        TimeCount.Instance.enabled = false;
+        bool end = false;
+        while (!end)
         {
-            case Play.coloringtool:
-                return true;
-            case Play.ball:
-                return true;
-            case Play.snack:
-                return true;
-            case Play.puzzle:
-                return Puzzle(sheepAbiliity);
-            case Play.consoleController:
-                return true;
+            float plusValue = 0;
+
+            if (true)//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
+            {
+                sheepAbiliity.ChangeStat(Stat.thirst, plusValue);
+                end = true;
+            }
+            yield return new WaitForSeconds(0.2f);
         }
-        return true;
+        TimeCount.Instance.enabled = true;
+        PosInput.input.SheepBackOrg(sheep);
     }
 
-    public bool CutMinigame()
+    public IEnumerator EatMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity)
     {
-        int plusValue = 0;
+        TimeCount.Instance.enabled = false;
+        bool end = false;
+        while (!end)
+        {
+            float plusValue = 0;
 
-        //미니게임 구현(return false를 꼭 넣을것)
+            if (true)//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
+            {
+                sheepAbiliity.ChangeStat(Stat.hungry, plusValue);
+                end = true;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        TimeCount.Instance.enabled = true;
+        PosInput.input.SheepBackOrg(sheep);
+    }
 
-        //미니게임 다 하면...
-        boyAbiliity.paper += plusValue;
-        return true;
+    public IEnumerator BellMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity, Play play)
+    {
+        TimeCount.Instance.enabled = false;
+        bool end = false;
+        while (!end)
+        {
+            switch (play)
+            {
+                case Play.coloringtool:
+                    end = true;
+                    break;
+                case Play.ball:
+                    end = true;
+                    break;
+                case Play.snack:
+                    end = true;
+                    break;
+                case Play.puzzle:
+                    end = Puzzle(sheepAbiliity);
+                    break;
+                case Play.consoleController:
+                    end = true;
+                    break;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        TimeCount.Instance.enabled = true;
+        PosInput.input.SheepBackOrg(sheep);
+    }
+
+    public IEnumerator CutMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity)
+    {
+        TimeCount.Instance.enabled = false;
+        bool end = false;
+        while (!end)
+        {
+            if (true)//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
+            {
+                boyAbiliity.paper++;
+                end = true;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        TimeCount.Instance.enabled = true;
+        PosInput.input.SheepBackOrg(sheep);
     }
 
     bool Puzzle(SheepAbiliity sheepAbiliity)
     {
-        Debug.Log(2);
         float plusValue = 0;
 
         picturePanel.SetActive(true);
-        pictureMinigame.enabled = true;
 
-        if (pictureMinigame.EndGame(out plusValue))
+        if (PictureMinigame.instance.EndGame(out plusValue))
         {
             sheepAbiliity.ChangeStat(Stat.stress, plusValue);
 
-            pictureMinigame.enabled = false;
             picturePanel.SetActive(false);
 
             return true;

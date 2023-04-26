@@ -55,7 +55,7 @@ public class SheepMove : SheepAction
 
             idleTime = 0;
             float movePos = Mathf.Clamp(UnityEngine.Random.Range(transform.position.x - 1f, 
-                transform.position.x + 1f), -2.5f, 1.5f);
+                transform.position.x + 1f), -6f, 5.5f);
             SheepAnim(movePos);
 
             transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear)
@@ -99,34 +99,36 @@ public class SheepMove : SheepAction
     public override void Water()
     {
         Food.Instance.moisture -= 10;
-        StartCoroutine(MiniGameDelay(minigameManager.WaterMinigame(sheepAbiliity)));
+        StartCoroutine(minigameManager.WaterMinigame(this, sheepAbiliity));
     }
 
     public override void Eat()
     {
         Food.Instance.food -= 10;
-        StartCoroutine(MiniGameDelay(minigameManager.EatMinigame(sheepAbiliity)));
+        StartCoroutine(minigameManager.EatMinigame(this, sheepAbiliity));
     }
 
     public override void Bell()
     {
-        Debug.Log(-1);
         if (PossibleGame())
         {
-            Debug.Log(0);
-            StartCoroutine(MiniGameDelay(minigameManager.BellMinigame(sheepAbiliity, play)));
+            StartCoroutine(minigameManager.BellMinigame(this, sheepAbiliity, play));
         }
         else
             PosInput.input.SheepBackOrg(this);
     }
 
     public override void Cut() 
-        => StartCoroutine(MiniGameDelay(minigameManager.CutMinigame()));
+        => StartCoroutine(minigameManager.CutMinigame(this, sheepAbiliity));
 
     IEnumerator MiniGameDelay(bool isClear)
     {
         while (!isClear)
+        {
+            Debug.Log(90);
             yield return new WaitForSeconds(0.2f);
+        }
+        Debug.Log(180);
         PosInput.input.SheepBackOrg(this);
     }
 }

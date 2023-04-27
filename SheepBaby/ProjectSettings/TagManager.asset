@@ -9,6 +9,8 @@ TagManager:
   - Sheep
   - Ground
   - Obstacle
+  - Goal
+  - Far
   layers:
   - Default
   - TransparentFX

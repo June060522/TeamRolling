@@ -2,27 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoccerGame : MonoBehaviour
+public class SoccerGame : Starping
 {
     /*public Transform ArrowTrm;
     public Transform PowerBarTrm;*/
 
     public float speed = 10f; // 축구공 이동 속도
     public Vector2 KeyInput;
-    private float MaxPower = 15, chargSpeed = 20;
+    private float MaxPower = 40, chargSpeed = 20;
     public float CurrnetPower = 0;
-    public float shootSpeed = 10;
+    bool a = true;
 
-    private Rigidbody2D rb;
-
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); // 축구공의 Rigidbody 컴포넌트 가져오기
     }
 
     void Update()
     {
-        BallMove();
+        if(a)
+            BallMove();
         Shoot();
     }
 
@@ -39,19 +38,19 @@ public class SoccerGame : MonoBehaviour
         {
             CurrnetPower += chargSpeed * Time.deltaTime;
             CurrnetPower = Mathf.Clamp(CurrnetPower, 0, MaxPower);
-            Debug.Log(CurrnetPower);
+            //Debug.Log(CurrnetPower);
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log("뗏다");
-            Fire();
+            a = false;
+            rb.AddForce(transform.up * 1 * CurrnetPower,ForceMode2D.Impulse);
+            //Fire();
         }
-
         //PowerBarTrm.localScale = new Vector3(CurrnetPower / MaxPower, 1, 1);
     }
 
-    private void Fire()
+    /*private void Fire()
     {
         rb.velocity = Vector2.zero; // 현재 속도 초기화
 
@@ -59,8 +58,7 @@ public class SoccerGame : MonoBehaviour
         float power = Mathf.Pow(CurrnetPower / MaxPower, 2) * MaxPower;
 
         // 일정한 속도로 나가도록 속도를 조정하며 AddForce 대신 velocity 값을 사용
-        rb.velocity = transform.right * shootSpeed * power;
-
+        //rb.velocity = transform.up * shootSpeed * power;
         CurrnetPower = 0;
-    }
+    }*/
 }

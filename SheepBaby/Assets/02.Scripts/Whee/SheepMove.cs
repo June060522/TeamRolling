@@ -8,7 +8,7 @@ using UnityEditor.Tilemaps;
 using UnityEditor.Build;
 using DG.Tweening;
 
-public class MinigameSheepMove : SheepAction
+public class SheepMove : SheepAction
 {
     public Play play;
 
@@ -55,7 +55,7 @@ public class MinigameSheepMove : SheepAction
 
             idleTime = 0;
             float movePos = Mathf.Clamp(UnityEngine.Random.Range(transform.position.x - 1f, 
-                transform.position.x + 1f), -2.5f, 1.5f);
+                transform.position.x + 1f), -6f, 5.5f);
             SheepAnim(movePos);
 
             transform.DOMoveX(movePos, moveTime).SetEase(Ease.Linear)
@@ -98,36 +98,37 @@ public class MinigameSheepMove : SheepAction
 
     public override void Water()
     {
-        if (Food.Instance.moisture >= 10 && PossibleGame())
-        {
-            Food.Instance.moisture -= 10;
-            StartCoroutine(MiniGameDelay(minigameManager.WaterMinigame(sheepAbiliity)));
-        }
-        else
-            PosInput.input.SheepBackOrg(this);
+        Food.Instance.moisture -= 10;
+        StartCoroutine(minigameManager.WaterMinigame(this, sheepAbiliity));
     }
 
     public override void Eat()
     {
-        if (Food.Instance.food >= 10 && PossibleGame())
+        Food.Instance.food -= 10;
+        StartCoroutine(minigameManager.EatMinigame(this, sheepAbiliity));
+    }
+
+    public override void Bell()
+    {
+        if (PossibleGame())
         {
-            Food.Instance.food -= 10;
-            StartCoroutine(MiniGameDelay(minigameManager.EatMinigame(sheepAbiliity)));
+            StartCoroutine(minigameManager.BellMinigame(this, sheepAbiliity, play));
         }
         else
             PosInput.input.SheepBackOrg(this);
     }
 
-    public override void Bell() 
-        => StartCoroutine(MiniGameDelay(minigameManager.BellMinigame(sheepAbiliity)));
-
     public override void Cut() 
-        => StartCoroutine(MiniGameDelay(minigameManager.CutMinigame()));
+        => StartCoroutine(minigameManager.CutMinigame(this, sheepAbiliity));
 
     IEnumerator MiniGameDelay(bool isClear)
     {
         while (!isClear)
-            yield return new WaitForSeconds(1.0f);
+        {
+            Debug.Log(90);
+            yield return new WaitForSeconds(0.2f);
+        }
+        Debug.Log(180);
         PosInput.input.SheepBackOrg(this);
     }
 }

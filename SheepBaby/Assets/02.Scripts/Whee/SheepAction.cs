@@ -14,8 +14,8 @@ public class SheepAction : MonoBehaviour
 
     protected virtual void TouchThis()
     {
-        MinigameSheepMove[] sheeps = FindObjectsOfType<MinigameSheepMove>();
-        foreach (MinigameSheepMove sheep in sheeps)
+        SheepMove[] sheeps = FindObjectsOfType<SheepMove>();
+        foreach (SheepMove sheep in sheeps)
             sheep.isChose = false;
         isChose = true;
     }

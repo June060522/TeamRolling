@@ -8,8 +8,14 @@ public class Scissor : MonoBehaviour
     public GameObject fur; // 깎을 양 모델
     public int RandomInt = 10;
     private float scissorSpeed = 100;
+    private int FarCount;
+    private float timer = 15;
 
     public TextMeshProUGUI RandomText;
+    public TextMeshProUGUI CountText;
+    public TextMeshProUGUI EndText;
+    public TextMeshProUGUI FailText;
+    public TextMeshProUGUI TimeText;
 
     private void Start()
     {
@@ -19,6 +25,19 @@ public class Scissor : MonoBehaviour
     private void Update()
     {
         Move();
+        CountTime();
+    }
+
+    private void CountTime()
+    {
+        timer -= Time.deltaTime;
+        TimeText.text = "남은시간 : " + Mathf.Round(timer);
+        if(timer <= 0)
+        {
+            Debug.Log("장휘성 ㅄ");
+            FailText.text = "failure";
+            enabled = false;
+        }
     }
 
     private void Move()
@@ -30,29 +49,22 @@ public class Scissor : MonoBehaviour
 
     private void FarRandom()
     {
-        RandomInt = Random.Range(0, 10);
+        RandomInt = Random.Range(1, 3);
         RandomText.text = $"{RandomInt}";
     }
-    /*private void OnMouseDown()
-    {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // 마우스 위치를 가져옴
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero); // 마우스 위치에서 Raycast 발사
 
-        if (hit.collider != null && hit.collider.gameObject == fur) // 깎을 양 모델을 클릭했다면
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Far"))
         {
-            int cutAmount = Random.Range(minCut, maxCut + 1); // 깎을 양을 랜덤으로 결정
-            for (int i = 0; i < cutAmount; i++)
+            Destroy(collision.gameObject);
+            FarCount++;
+            CountText.text = $"{FarCount}";
+            if(FarCount == RandomInt)
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(hit.point, 0.2f); // 깎을 위치 주변에 있는 Collider들을 가져옴
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.gameObject == fur) // 깎을 양 모델에 닿았다면
-                    {
-                        Destroy(collider.gameObject); // 해당 양을 파괴
-                        break;
-                    }
-                }
+                EndText.text = "Clear";
+                enabled = false;
             }
         }
-    }*/
+    }
 }

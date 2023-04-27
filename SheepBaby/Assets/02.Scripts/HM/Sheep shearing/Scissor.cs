@@ -73,7 +73,6 @@ public class Scissor : MonoBehaviour
                     EndText.text = "Clear";
                     enabled = false;
                 }));
-
             }
         }
     }

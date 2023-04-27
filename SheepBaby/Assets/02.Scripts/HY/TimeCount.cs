@@ -33,7 +33,7 @@ public class TimeCount : MonoBehaviour
     {
         globalLight.intensity = 1;
         dayCnt = 1;
-        StartCoroutine(DayCnt());
+        //StartCoroutine(DayCnt());
     }
 
     public void Update()
@@ -41,7 +41,17 @@ public class TimeCount : MonoBehaviour
         timer += Time.deltaTime;
         timeText.text = $"{Mathf.FloorToInt(timer / 60)} : {Mathf.FloorToInt(timer % 60)}";
 
-        dayCntText.text = $"Day {dayCnt}";
+        dayCntText.text = $"Day {Mathf.FloorToInt(timer / 60)}";
+        if (Mathf.FloorToInt(timer % 60) < 30)
+        {
+            isNight = true;
+            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 1.1f, 0.02f);
+        }
+        else
+        {
+            isNight = false;
+            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 0.3f, 0.02f);
+        }
     }
 
     IEnumerator DayCnt()

@@ -32,6 +32,7 @@ public class MinigameStore : MonoBehaviour
         if (boyAbiliity.paper > 0)
         {
             keys.Add(buttonList[num].playEnum.ToString());
+            buttonList[num].button.GetComponent<Image>().color = Color.gray;
             buttonList[num].button.enabled = false;
 
             boyAbiliity.paper--;

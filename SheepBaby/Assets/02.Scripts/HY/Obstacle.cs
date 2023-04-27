@@ -7,7 +7,8 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] GameObject[] ground = new GameObject[2];
-    [SerializeField] GameObject obstacle, gameoverPanel;
+    [SerializeField] GameObject[] obstacle = new GameObject[3];
+    [SerializeField] GameObject gameoverPanel;
     [SerializeField] TextMeshProUGUI scoreTxt;
 
     public static bool isGame = true;
@@ -22,10 +23,14 @@ public class Obstacle : MonoBehaviour
             scoreCnt += 1;
             scoreTxt.text = "score: " + scoreCnt.ToString();
 
-            Move(obstacle);
-            if (obstacle.transform.position.x < -15)
+            for (int i = 0; i < 3; i++)
             {
-                obstacle.transform.position = new Vector3(0, obstacle.transform.position.y, 0);
+                Move(obstacle[i]);
+                if (obstacle[i].transform.position.x < -14)
+                {
+                    obstacle[i].transform.position = new Vector3(7, obstacle[i].transform.position.y, 0);
+                }
+
             }
 
             for (int i = 0; i < 2; i++)
@@ -47,9 +52,15 @@ public class Obstacle : MonoBehaviour
     public void Restart()
     {
         isGame = true;
-        speed = 1;
+        Time.timeScale = 1f;
+        speed = 0;
         scoreCnt = 0;
-        obstacle.transform.position = new Vector3(2, obstacle.transform.position.y, 0);
+
+        for (int i = 0; i < 3; i++)
+        {
+            obstacle[i].transform.position = new Vector3(Random.Range(0,7),
+                obstacle[i].transform.position.y, 0);
+        }
         gameoverPanel.SetActive(false);
     }
 }

@@ -8,7 +8,7 @@ public class MinigameSheep : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private float jumpPower = 6f;
+    private float jumpPower = 5.5f;
     private int jumpCnt = 1;
     public bool isGround = true;
 
@@ -41,6 +41,7 @@ public class MinigameSheep : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             gameoverTxt.SetActive(true);
+            Time.timeScale = 0f;
             Debug.Log(0);
         }
     }

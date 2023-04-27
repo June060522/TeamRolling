@@ -474,12 +474,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197234806}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -3.4, z: 0}
+  m_LocalPosition: {x: -966, y: -415.90005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 2062406065}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &197234809
 Rigidbody2D:
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1271132264}
         m_TargetAssemblyTypeName: Obstacle, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -3648,6 +3648,7 @@ GameObject:
   - component: {fileID: 910930120}
   - component: {fileID: 910930123}
   - component: {fileID: 910930122}
+  - component: {fileID: 910930124}
   m_Layer: 0
   m_Name: Obstacle (1)
   m_TagString: Obstacle
@@ -3748,6 +3749,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &910930124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910930119}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb53f29db7b17114fa700463a43611e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  ground:
+  - {fileID: 752361804}
+  - {fileID: 825927967}
+  obstacle:
+  - {fileID: 1495580379}
+  - {fileID: 910930119}
+  - {fileID: 927760621}
+  gameoverPanel: {fileID: 1670466379}
+  scoreTxt: {fileID: 1544386427}
 --- !u!1 &927760621
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,6 +3782,7 @@ GameObject:
   - component: {fileID: 927760622}
   - component: {fileID: 927760625}
   - component: {fileID: 927760624}
+  - component: {fileID: 927760626}
   m_Layer: 0
   m_Name: Obstacle (2)
   m_TagString: Obstacle
@@ -3859,6 +3883,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &927760626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927760621}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb53f29db7b17114fa700463a43611e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  ground:
+  - {fileID: 752361804}
+  - {fileID: 825927967}
+  obstacle:
+  - {fileID: 1495580379}
+  - {fileID: 910930119}
+  - {fileID: 927760621}
+  gameoverPanel: {fileID: 1670466379}
+  scoreTxt: {fileID: 1544386427}
 --- !u!1 &929163281
 GameObject:
   m_ObjectHideFlags: 0
@@ -5470,6 +5516,7 @@ GameObject:
   - component: {fileID: 1495580381}
   - component: {fileID: 1495580380}
   - component: {fileID: 1495580382}
+  - component: {fileID: 1495580383}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -5570,6 +5617,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1495580383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495580379}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb53f29db7b17114fa700463a43611e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  ground:
+  - {fileID: 752361804}
+  - {fileID: 825927967}
+  obstacle:
+  - {fileID: 1495580379}
+  - {fileID: 910930119}
+  - {fileID: 927760621}
+  gameoverPanel: {fileID: 1670466379}
+  scoreTxt: {fileID: 1544386427}
 --- !u!1 &1519965703
 GameObject:
   m_ObjectHideFlags: 0
@@ -7005,7 +7074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2062406065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7022,6 +7091,7 @@ RectTransform:
   - {fileID: 1670466380}
   - {fileID: 826960796}
   - {fileID: 1271132263}
+  - {fileID: 197234808}
   m_Father: {fileID: 2092516481}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

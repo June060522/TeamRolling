@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
     {
         if (isGame)
         {
-            speed += 0.1f * Time.deltaTime;
+            speed=3.5f;
 
             scoreCnt += 1;
             scoreTxt.text = "score: " + scoreCnt.ToString();
@@ -30,7 +30,6 @@ public class Obstacle : MonoBehaviour
                 {
                     obstacle[i].transform.position = new Vector3(7, obstacle[i].transform.position.y, 0);
                 }
-
             }
 
             for (int i = 0; i < 2; i++)
@@ -53,12 +52,12 @@ public class Obstacle : MonoBehaviour
     {
         isGame = true;
         Time.timeScale = 1f;
-        speed = 0;
+        speed = 1;
         scoreCnt = 0;
 
         for (int i = 0; i < 3; i++)
         {
-            obstacle[i].transform.position = new Vector3(Random.Range(0,7),
+            obstacle[i].transform.position = new Vector3(Random.Range(0,15),
                 obstacle[i].transform.position.y, 0);
         }
         gameoverPanel.SetActive(false);

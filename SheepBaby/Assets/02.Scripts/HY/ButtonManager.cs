@@ -66,4 +66,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(str);
 
     }
+
+    public void GameOut()
+    {
+
+        Application.Quit();
+
+    }
 }

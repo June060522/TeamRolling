@@ -4,44 +4,48 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor.Rendering;
+using UnityEditor;
+using TMPro;
+using static UnityEngine.Rendering.DebugUI;
+using System;
 
 public class GameStartManager : MonoBehaviour
 {
-    [SerializeField] GameObject SelectModPanel;
-    [SerializeField] GameObject Title;
-    [SerializeField] Text inputText;
+    [SerializeField] GameObject sheep;
+    [SerializeField] GameObject sheepEmple;
+    [SerializeField] private TextMeshProUGUI inputText;
 
-    public void OnGameStartButton()
+    public void SheepSetting()
     {
-        SelectModPanel.SetActive(true);
-        Title.SetActive(false);
-    }
+        string s = inputText.text[0].ToString();
 
-    public void EasyMod()
-    {
-        SceneManager.LoadScene(0);
-    }
+        try
+        {
+            if (inputText.text.Length < 3)
+            {
+                SheepAbiliity[] oldSheep = FindObjectsOfType<SheepAbiliity>();
+                foreach (SheepAbiliity oSheep in oldSheep)
+                    Destroy(oSheep.gameObject);
 
-    public void NormalMod()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void HardMod()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void Xbutton()
-    {
-        SelectModPanel.SetActive(false);
-        Title.SetActive(true);
+                float pos = -(float.Parse(s) - 1) / 2;
+                for (float i = pos; i <= -pos; i += 1f)
+                {
+                    GameObject newSheep = Instantiate(sheep, new Vector3(i, -0.02f, 0), Quaternion.identity);
+                    newSheep.transform.parent = sheepEmple.transform;
+                    newSheep.tag = "Sheep";
+                }
+            }
+        }
+        catch (Exception exp) { }
     }
 
     public void StartWheeSong()
     {
-        PlayerPrefs.SetFloat("SheepAmount", int.Parse(inputText.text));
-        if (int.Parse(inputText.text) > 0 && int.Parse(inputText.text) <= 10)
+        string s = inputText.text[0].ToString();
+
+        PlayerPrefs.SetFloat("SheepAmount", int.Parse(s));
+
+        if (int.Parse(s) > 0 && int.Parse(s) < 10 && inputText.text.Length < 3)
             SceneManager.LoadScene("DevWheesung");
     }
 }

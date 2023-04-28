@@ -42,16 +42,20 @@ public class TimeCount : MonoBehaviour
         timeText.text = $"{Mathf.FloorToInt(timer / 60)} : {Mathf.FloorToInt(timer % 60)}";
 
         dayCntText.text = $"Day {Mathf.FloorToInt(timer / 60)}";
-        if (Mathf.FloorToInt(timer % 60) < 30)
+        if (Mathf.FloorToInt(timer % 60) > 29)
         {
+            StartCoroutine(WolfSpawn.wolfSpawn.WolfStart());
             isNight = true;
-            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 1.1f, 0.02f);
+            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 0.3f, 0.02f);
         }
         else
         {
             isNight = false;
-            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 0.3f, 0.02f);
+            globalLight.intensity = Mathf.Lerp(globalLight.intensity, 1.1f, 0.02f);
         }
+
+        if(!isNight && Mathf.FloorToInt(timer % 60) > 29) 
+            StartCoroutine(WolfSpawn.wolfSpawn.WolfStart());
     }
 
     IEnumerator DayCnt()

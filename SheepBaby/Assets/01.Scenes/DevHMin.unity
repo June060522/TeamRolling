@@ -1098,7 +1098,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectModPanel: {fileID: 360564930}
   Title: {fileID: 1835735987}
+<<<<<<< Updated upstream
   inputText: {fileID: 1113573796}
+=======
+  inputText: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!4 &1089728645
 Transform:
   m_ObjectHideFlags: 0

@@ -52,6 +52,7 @@ public class Boy : SheepAction
 
     public override void Wolf()
     {
+        Debug.Log("WOLFRUN");
         WolfSpawn.wolfSpawn.WolfRun();
         PosInput.input.BoyBackOrg();
     }

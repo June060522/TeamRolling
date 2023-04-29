@@ -44,7 +44,6 @@ public class TimeCount : MonoBehaviour
         dayCntText.text = $"Day {Mathf.FloorToInt(timer / 60)}";
         if (Mathf.FloorToInt(timer % 60) > 29)
         {
-            StartCoroutine(WolfSpawn.wolfSpawn.WolfStart());
             isNight = true;
             globalLight.intensity = Mathf.Lerp(globalLight.intensity, 0.3f, 0.02f);
         }

@@ -52,7 +52,7 @@ public class PosInput : MonoBehaviour
         {
             if (boy.isChose && !boy.isRest)
             {
-                if (wolfSpawn.state == Enum.State.idle)
+                if (wolfSpawn.state == Enum.State.idle && number == 4)
                 {
                     Debug.Log("¾ÈµÅ µ¹¾Æ°¡2");
                     return;

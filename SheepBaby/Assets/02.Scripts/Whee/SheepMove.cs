@@ -1,19 +1,14 @@
-using Cinemachine.Utility;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Enum;
-using UnityEditor.Tilemaps;
-using UnityEditor.Build;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class SheepMove : SheepAction
 {
     public Play play;
 
     private Boy boy;
-    private GameObject icon;
 
     private SheepAbiliity sheepAbiliity;
     private MinigameManager minigameManager;
@@ -70,8 +65,15 @@ public class SheepMove : SheepAction
         
         if (hit.collider == collider)
         {
-            base.TouchThis();
-            boy.isChose = false;
+            if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                base.TouchThis();
+                boy.isChose = false;
+            }
         }
     }
 

@@ -99,7 +99,7 @@ public class SheepMove : SheepAction
     public override void Water()
     {
         Food.Instance.moisture -= 10;
-        StartCoroutine(minigameManager.WaterMinigame(this, sheepAbiliity));
+        StartCoroutine(minigameManager.WaterMinigames(this, sheepAbiliity));
     }
 
     public override void Eat()

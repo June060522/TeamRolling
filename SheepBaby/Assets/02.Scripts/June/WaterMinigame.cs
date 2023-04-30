@@ -6,21 +6,30 @@ using UnityEngine.UI;
 
 public class WaterMinigame : MonoBehaviour
 {
+    public static WaterMinigame instance;
+
     [SerializeField] Scrollbar scrollbar;
     [SerializeField] RectTransform goal;
 
+    bool gameEnd = false;
     bool isDir = true;
     float moveVal = 0f;
     float goalVal = 0f;
     private void Awake()
     {
+        instance = this;
+
         if(scrollbar == null)
         {
             scrollbar = GetComponent<Scrollbar>();
         }
 
         scrollbar.interactable = false;
+    }
 
+    private void OnEnable()
+    {
+        gameEnd = false;
         StartMinigame(1f, 3f);
     }
 
@@ -58,21 +67,36 @@ public class WaterMinigame : MonoBehaviour
             scrollbar.value = moveVal;
             yield return new WaitForSeconds(0.01f);
         }
-        EndGame();
+        yield return new WaitForSeconds(1f);
+        gameEnd = true;
     }
 
-    public void EndGame()
+    public bool EndGame(out float value)
     {
-        float endVal = moveVal - goalVal;
-        if(endVal >= -0.12 && endVal <= 0.03)
+        if (gameEnd)
         {
-            Debug.Log("1.5배");
+            Debug.Log(33);
+            float endVal = moveVal - goalVal;
+            if (endVal >= -0.12 && endVal <= 0.03)
+            {
+                Debug.Log("1.5배");
+                value = 30;
+                return true;
+            }
+            else if (endVal >= -0.12 && endVal <= 0.1)
+            {
+                Debug.Log("1배");
+                value = 20;
+                return true;
+            }
+            else
+            {
+                Debug.Log("0.5배");
+                value = 10;
+                return true;
+            }
         }
-        else if(endVal >= -0.12 && endVal <= 0.1)
-        {
-            Debug.Log("1배");
-        }
-        else
-            Debug.Log("0.5배");
+        value = 0;
+        return false;
     }
 }

@@ -59,4 +59,18 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("DevHMin");
 
     }
+
+    public void LoadScene(string str)
+    {
+
+        SceneManager.LoadScene(str);
+
+    }
+
+    public void GameOut()
+    {
+
+        Application.Quit();
+
+    }
 }

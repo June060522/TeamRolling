@@ -7,10 +7,12 @@ public class PuzzleMinigame : MonoBehaviour
 {
     [SerializeField] Image[] levelOne;// 2 * 2
     [SerializeField] Image[] levelTwo;// 3 * 3
+    [SerializeField] Sprite[] levelOneSprite;
+    [SerializeField] Sprite[] levelTwoSprite;
 
     private void Start()
     {
-        Setting(2); 
+        Setting(1); 
     }
     private void Setting(int level)
     {
@@ -27,6 +29,7 @@ public class PuzzleMinigame : MonoBehaviour
             Image img = Instantiate(levelOne[i],this.transform);
             img.transform.localPosition = 
                 new Vector2(Random.Range(-900f, 900f), Random.Range(-500f, 500f));
+            img.GetComponent<Image>().sprite = levelOneSprite[i];
         }
     }
     private void LevelTwo()
@@ -36,6 +39,7 @@ public class PuzzleMinigame : MonoBehaviour
             Image img = Instantiate(levelTwo[i], this.transform);
             img.transform.localPosition =
                 new Vector2(Random.Range(-900f, 900f), Random.Range(-500f, 500f));
+            img.GetComponent<Image>().sprite = levelTwoSprite[i];
         }
     }
 }

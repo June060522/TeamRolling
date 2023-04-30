@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 public class Scissor : MonoBehaviour
@@ -34,7 +35,6 @@ public class Scissor : MonoBehaviour
         TimeText.text = "남은시간 : " + Mathf.Round(timer);
         if(timer <= 0)
         {
-            Debug.Log("장휘성 ㅄ");
             FailText.text = "failure";
             enabled = false;
         }
@@ -47,10 +47,16 @@ public class Scissor : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, mousePosition, scissorSpeed * Time.deltaTime);
     }
 
-    private void FarRandom()
+    public void FarRandom()
     {
-        RandomInt = Random.Range(1, 3);
+        RandomInt = UnityEngine.Random.Range(1, 10);
         RandomText.text = $"{RandomInt}";
+    }
+
+    IEnumerator DeilyTime(float _deilyTime, Action collback)
+    {
+        yield return new WaitForSeconds(_deilyTime);
+        collback?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -62,8 +68,11 @@ public class Scissor : MonoBehaviour
             CountText.text = $"{FarCount}";
             if(FarCount == RandomInt)
             {
-                EndText.text = "Clear";
-                enabled = false;
+                StartCoroutine(DeilyTime(1, () =>
+                {
+                    EndText.text = "Clear";
+                    enabled = false;
+                }));
             }
         }
     }

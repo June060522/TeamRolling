@@ -10,12 +10,14 @@ public class BoyAbiliity : MonoBehaviour
     [Header("소년 기본 스텟")]
     public float tired = 100f;
 
-    public int paper = 0;
+    public float paper = 0;
 
     private float lifeTime = 0f;
 
     private void Start()
     {
+        paper = PlayerPrefs.GetFloat("Paper");
+
         StartCoroutine(BoyAbilityChange());
     }
 

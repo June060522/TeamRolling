@@ -48,6 +48,7 @@ public class PanelManag : MonoBehaviour
         }
         else
         {
+            bool sheepChose = false;
             foreach (SheepMove sheep in sheeps)
             {
                 if (sheep.isChose)
@@ -58,7 +59,23 @@ public class PanelManag : MonoBehaviour
                     boyUI.SetActive(false);
                     sheepPrefit.SetActive(true);
                     boyPrefit.SetActive(false);
+
+                    sheepChose = true;
                 }
+            }
+
+            if (!sheepChose)
+            {
+                sheepUI.SetActive(false);
+                boyUI.SetActive(false);
+                sheepPrefit.SetActive(false);
+                boyPrefit.SetActive(false);
+
+                thirstText.text = "";
+                hungryText.text = "";
+                stressText.text = "";
+                tiredText.text = "";
+                paperText.text = "";
             }
         }
     }

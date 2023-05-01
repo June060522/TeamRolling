@@ -24,7 +24,6 @@ public class SheepMove : SheepAction
     private void Start()
     {
         boy = FindObjectOfType<Boy>();
-        Debug.Log($"{boy}¾ÈµÅ ½Ã¹ß");
         collider = this.GetComponent<CapsuleCollider2D>();
 
         sheepAbiliity = FindObjectOfType<SheepAbiliity>();

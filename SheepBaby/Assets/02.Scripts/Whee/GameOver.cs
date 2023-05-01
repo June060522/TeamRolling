@@ -43,7 +43,7 @@ public class GameOver : MonoBehaviour
 
     private void BaseOver()
     {
-        float paperAmount = PlayerPrefs.GetFloat("Paper") + boyAbiliity.paper;
+        float paperAmount = boyAbiliity.paper;
         PlayerPrefs.SetFloat("Paper", paperAmount);
 
         Destroy(sheepEmplx);

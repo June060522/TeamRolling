@@ -48,3 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Scissor
+    uniqueID: 3464791061
+    locked: 0
+  - name: Far
+    uniqueID: 584852543
+    locked: 0

@@ -117,7 +117,7 @@ public class MinigameManager : MonoBehaviour
 
         if (PictureMinigame.instance.EndGame(out plusValue))
         {
-            sheepAbiliity.ChangeStat(Stat.stress, plusValue);
+            sheepAbiliity.ChangeStat(Stat.fun, plusValue);
 
             picturePanel.SetActive(false);
 

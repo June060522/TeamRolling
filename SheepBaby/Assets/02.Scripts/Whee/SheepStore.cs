@@ -24,7 +24,9 @@ public class SheepStore : MonoBehaviour
 
     public void BuySheep(GameObject sheep)
     {
-        if (paper > 0)
+        float sheetCnt = GameObject.FindGameObjectsWithTag("Sheep").Length;
+
+        if (paper > 0 && sheetCnt < 10)
         {
             paper--;
             PlayerPrefs.SetFloat("Paper", paper);

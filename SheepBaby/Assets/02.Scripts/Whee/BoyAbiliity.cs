@@ -8,7 +8,7 @@ using UnityEngine;
 public class BoyAbiliity : MonoBehaviour
 {
     [Header("소년 기본 스텟")]
-    public float tired = 100f;
+    public float tired;
 
     public float paper = 0;
 
@@ -17,6 +17,7 @@ public class BoyAbiliity : MonoBehaviour
     private void Start()
     {
         paper = PlayerPrefs.GetFloat("Paper");
+        tired = 100f;
 
         StartCoroutine(BoyAbilityChange());
     }

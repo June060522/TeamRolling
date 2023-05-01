@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    private GameObject sheepEmplx;
+
     [SerializeField] private GameObject storePanel;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Button storeButton;
     [SerializeField] private Button optionButton;
 
 
-    private void Awake()
-    {
-        //timeCount = GetComponent<TimeCount>();
-    }
+    private void Start()
+        => sheepEmplx = GameObject.FindWithTag("SheepEmplx");
 
     public void storeBtnClick()
     {
@@ -59,6 +59,9 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("DevHMin");
 
     }
+
+    public void SheepDestory()
+        => Destroy(sheepEmplx);
 
     public void LoadScene(string str)
     {

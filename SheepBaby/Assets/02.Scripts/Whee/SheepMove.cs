@@ -21,9 +21,10 @@ public class SheepMove : SheepAction
     [HideInInspector] public float reStayTime;
     [SerializeField] private float moveTime;
 
-    private void Awake()
+    private void Start()
     {
         boy = FindObjectOfType<Boy>();
+        Debug.Log($"{boy}¾ÈµÅ ½Ã¹ß");
         collider = this.GetComponent<CapsuleCollider2D>();
 
         sheepAbiliity = FindObjectOfType<SheepAbiliity>();

@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
 
     private BoyAbiliity boyAbiliity;
 
+    private GameObject sheepEmplx;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject gameoverPanel;
     [SerializeReference] private Text gameoverText;
@@ -18,6 +19,9 @@ public class GameOver : MonoBehaviour
         gameOver = this;
         boyAbiliity = FindObjectOfType<BoyAbiliity>();
     }
+
+    void Start()
+        => sheepEmplx = GameObject.FindWithTag("SheepEmplx");
 
     public void StateOver()
     {
@@ -41,6 +45,8 @@ public class GameOver : MonoBehaviour
     {
         float paperAmount = PlayerPrefs.GetFloat("Paper") + boyAbiliity.paper;
         PlayerPrefs.SetFloat("Paper", paperAmount);
+
+        Destroy(sheepEmplx);
 
         panel.SetActive(true);
         gameoverPanel.SetActive(true);

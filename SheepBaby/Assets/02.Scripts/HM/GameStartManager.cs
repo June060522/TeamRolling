@@ -55,6 +55,10 @@ public class GameStartManager : MonoBehaviour
     public void InputSheep(GameObject sheep)
     {
         GameObject newSheep = Instantiate(sheep, new Vector3(0, -0.02f, 0), Quaternion.identity);
+
+        newSheep.GetComponent<SheepMove>().enabled = false;
+        newSheep.GetComponent<SheepAbiliity>().enabled = false;
+
         newSheep.transform.parent = sheepEmple.transform;
         newSheep.tag = "Sheep";
     }

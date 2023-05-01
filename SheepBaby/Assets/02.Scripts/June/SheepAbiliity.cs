@@ -7,9 +7,9 @@ using Enum;
 public class SheepAbiliity : MonoBehaviour
 {
     [Header("¾ç ±âº» ½ºÅÝ")]
-    [SerializeField] float fun;
-    [SerializeField] float thirst;
-    [SerializeField] float hungry;
+    [SerializeField] public float fun = 100f;
+    [SerializeField] public float thirst = 100f;
+    [SerializeField] public float hungry = 100f;
     //[SerializeField] float stress = 100f;
 
     public float Thirst { get { return thirst; } private set { } }
@@ -21,9 +21,6 @@ public class SheepAbiliity : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SheepAbilityChange());
-        fun = 100f;
-        thirst = 100f;
-        hungry = 100f;
     }
 
     public void Update()

@@ -48,7 +48,17 @@ public class ButtonManager : MonoBehaviour
 
     public void ReStartClick() 
     {
-        
+        BoyAbiliity boy = FindObjectOfType<BoyAbiliity>();
+        boy.tired = 100;
+
+        SheepAbiliity[] sheepAbiliity = FindObjectsOfType<SheepAbiliity>();
+        foreach (SheepAbiliity s in sheepAbiliity)
+        {
+            s.fun = 100;
+            s.thirst = 100;
+            s.hungry = 100;
+        }
+
         SceneManager.LoadScene("DevWheesung");
 
     }

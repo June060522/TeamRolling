@@ -7,15 +7,17 @@ using DG.Tweening;
 public class MinigameManager : MonoBehaviour
 {
     BoyAbiliity boyAbiliity;
+    TouchScreen touchScreen;
 
-    [SerializeField] private GameObject picturePanel;
     [SerializeField] private GameObject waterPanel;
+    [SerializeField] private GameObject cutPanel;
+    [SerializeField] private GameObject picturePanel;
 
     private void Awake()
     {
         boyAbiliity = FindObjectOfType<BoyAbiliity>();
 
-        //pictureMinigame.enabled = false;
+        touchScreen = FindObjectOfType<TouchScreen>();
     }
 
     public IEnumerator WaterMinigames(SheepMove sheep, SheepAbiliity sheepAbiliity)
@@ -98,9 +100,14 @@ public class MinigameManager : MonoBehaviour
         bool end = false;
         while (!end)
         {
-            if (true)//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
+            float plusValue = 0;
+
+            cutPanel.SetActive(true);
+
+            if (WaterMinigame.instance.EndGame(out plusValue))//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
             {
-                boyAbiliity.paper++;
+                boyAbiliity.paper += plusValue;
+                cutPanel.SetActive(false);
                 end = true;
             }
             yield return new WaitForSeconds(0.2f);

@@ -83,7 +83,7 @@ public class PanelManag : MonoBehaviour
     void BoyText()
     {
         tiredText.text = $"Tired : {Mathf.RoundToInt(boyAbiliity.tired)}";
-        paperText.text = $"Paper : {Mathf.RoundToInt(boyAbiliity.paper)}";
+        paperText.text = $"Money : {Mathf.RoundToInt(boyAbiliity.paper)}";
     }
 
     void SheepText(SheepAbiliity sheep)

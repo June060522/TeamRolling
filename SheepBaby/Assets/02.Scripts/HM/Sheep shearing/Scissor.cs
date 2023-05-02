@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class Scissor : MonoBehaviour
+public class Scissor : MonoBehaviour, IDragHandler
 {
     public GameObject fur; // ±ðÀ» ¾ç ¸ðµ¨
     public int RandomInt = 10;
@@ -12,8 +13,15 @@ public class Scissor : MonoBehaviour
     private int FarCount;
     private float timer = 15;
 
+<<<<<<< Updated upstream
     public TextMeshProUGUI RandomText;
     public TextMeshProUGUI CountText;
+=======
+    private bool isWaiting = false;
+    private bool isClear = false;
+    private bool isFail = false;
+
+>>>>>>> Stashed changes
     public TextMeshProUGUI EndText;
     public TextMeshProUGUI FailText;
     public TextMeshProUGUI TimeText;
@@ -25,19 +33,24 @@ public class Scissor : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        //Move();
         CountTime();
     }
 
     private void CountTime()
     {
         timer -= Time.deltaTime;
-        TimeText.text = "³²Àº½Ã°£ : " + Mathf.Round(timer);
+        TimeText.text = Mathf.Round(timer).ToString();
         if(timer <= 0)
         {
             FailText.text = "failure";
             enabled = false;
         }
+    }
+
+    public bool EndGame()
+    {
+        return false;
     }
 
     private void Move()
@@ -48,10 +61,7 @@ public class Scissor : MonoBehaviour
     }
 
     public void FarRandom()
-    {
-        RandomInt = UnityEngine.Random.Range(1, 10);
-        RandomText.text = $"{RandomInt}";
-    }
+        => RandomInt = UnityEngine.Random.Range(1, 10);
 
     IEnumerator DeilyTime(float _deilyTime, Action collback)
     {
@@ -65,8 +75,12 @@ public class Scissor : MonoBehaviour
         {
             Destroy(collision.gameObject);
             FarCount++;
+<<<<<<< Updated upstream
             CountText.text = $"{FarCount}";
             if(FarCount == RandomInt)
+=======
+            if (FarCount == RandomInt)
+>>>>>>> Stashed changes
             {
                 StartCoroutine(DeilyTime(1, () =>
                 {
@@ -76,4 +90,18 @@ public class Scissor : MonoBehaviour
             }
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    private IEnumerator DeilyTime(float seconds, Action callback)
+    {
+        yield return new WaitForSeconds(seconds);
+        callback?.Invoke();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = eventData.position;
+    }
+>>>>>>> Stashed changes
 }

@@ -23,6 +23,7 @@ public class MinigameManager : MonoBehaviour
     public IEnumerator WaterMinigames(SheepMove sheep, SheepAbiliity sheepAbiliity)
     {
         TimeCount.Instance.enabled = false;
+        touchScreen.enabled = false;
         bool end = false;
         while (!end)
         {
@@ -39,12 +40,14 @@ public class MinigameManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         TimeCount.Instance.enabled = true;
+        touchScreen.enabled = true;
         PosInput.input.SheepBackOrg(sheep);
     }
 
     public IEnumerator EatMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity)
     {
         TimeCount.Instance.enabled = false;
+        touchScreen.enabled = false;
         bool end = false;
         while (!end)
         {
@@ -61,12 +64,14 @@ public class MinigameManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         TimeCount.Instance.enabled = true;
+        touchScreen.enabled = true;
         PosInput.input.SheepBackOrg(sheep);
     }
 
     public IEnumerator BellMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity, Play play)
     {
         TimeCount.Instance.enabled = false;
+        touchScreen.enabled = false;
         bool end = false;
         while (!end)
         {
@@ -91,12 +96,14 @@ public class MinigameManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         TimeCount.Instance.enabled = true;
+        touchScreen.enabled = true;
         PosInput.input.SheepBackOrg(sheep);
     }
 
     public IEnumerator CutMinigame(SheepMove sheep, SheepAbiliity sheepAbiliity)
     {
         TimeCount.Instance.enabled = false;
+        touchScreen.enabled = false;
         bool end = false;
         while (!end)
         {
@@ -113,6 +120,7 @@ public class MinigameManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         TimeCount.Instance.enabled = true;
+        touchScreen.enabled = true;
         PosInput.input.SheepBackOrg(sheep);
     }
 

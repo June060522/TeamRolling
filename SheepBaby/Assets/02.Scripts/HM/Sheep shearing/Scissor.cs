@@ -8,32 +8,26 @@ using UnityEngine.EventSystems;
 public class Scissor : MonoBehaviour, IDragHandler
 {
     public GameObject fur; // ±ðÀ» ¾ç ¸ðµ¨
-    public int RandomInt = 10;
+    public int RandomInt;
     private float scissorSpeed = 100;
     private int FarCount;
-    private float timer = 15;
+    private float timer;
 
-<<<<<<< Updated upstream
-    public TextMeshProUGUI RandomText;
-    public TextMeshProUGUI CountText;
-=======
     private bool isWaiting = false;
     private bool isClear = false;
     private bool isFail = false;
 
->>>>>>> Stashed changes
-    public TextMeshProUGUI EndText;
-    public TextMeshProUGUI FailText;
     public TextMeshProUGUI TimeText;
 
-    private void Start()
+    private void OnEnable()
     {
-        FarRandom();
+        timer = 15;
+        RandomInt = 15;
+        FarCount = 0;
     }
 
     private void Update()
     {
-        //Move();
         CountTime();
     }
 
@@ -41,15 +35,22 @@ public class Scissor : MonoBehaviour, IDragHandler
     {
         timer -= Time.deltaTime;
         TimeText.text = Mathf.Round(timer).ToString();
-        if(timer <= 0)
-        {
-            FailText.text = "failure";
-            enabled = false;
-        }
     }
 
-    public bool EndGame()
+    public bool EndGame(out float value)
     {
+        if (timer <= 0)
+        {
+            value = 0;
+            return true;
+        }
+        else if (FarCount == RandomInt)
+        {
+            value = 3;
+            return true;
+        }
+
+        value = 0;
         return false;
     }
 
@@ -59,9 +60,6 @@ public class Scissor : MonoBehaviour, IDragHandler
         mousePosition.z = 0f;
         transform.position = Vector3.MoveTowards(transform.position, mousePosition, scissorSpeed * Time.deltaTime);
     }
-
-    public void FarRandom()
-        => RandomInt = UnityEngine.Random.Range(1, 10);
 
     IEnumerator DeilyTime(float _deilyTime, Action collback)
     {
@@ -75,33 +73,13 @@ public class Scissor : MonoBehaviour, IDragHandler
         {
             Destroy(collision.gameObject);
             FarCount++;
-<<<<<<< Updated upstream
-            CountText.text = $"{FarCount}";
-            if(FarCount == RandomInt)
-=======
-            if (FarCount == RandomInt)
->>>>>>> Stashed changes
-            {
-                StartCoroutine(DeilyTime(1, () =>
-                {
-                    EndText.text = "Clear";
-                    enabled = false;
-                }));
-            }
         }
-    }
-<<<<<<< Updated upstream
-=======
-
-    private IEnumerator DeilyTime(float seconds, Action callback)
-    {
-        yield return new WaitForSeconds(seconds);
-        callback?.Invoke();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        Debug.Log(eventData.position);
+        Debug.Log(eventData.pointerDrag);
         transform.position = eventData.position;
     }
->>>>>>> Stashed changes
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class FarSpawn : MonoBehaviour
 {
     public Transform spawnTransform;
+    private Renderer renderer;
 
     public GameObject Far;
-    public Scissor scissor;
+    //public Scissor scissor;
 
     public void Start()
     {
@@ -18,8 +19,9 @@ public class FarSpawn : MonoBehaviour
     {
         for(int i = 0; i < 15; i++)
         {
-            spawnTransform.position = new Vector3(Random.Range(-7, 7), Random.Range(-4, 1.5f));
-            Instantiate(Far, spawnTransform.position, spawnTransform.rotation);
+            spawnTransform.position = new Vector3(Random.Range(-1f, 4f), Random.Range(-3.7f, 1.3f));
+            GameObject obj = Instantiate(Far, spawnTransform.position, spawnTransform.rotation);
+            obj.GetComponent<Renderer>().sortingOrder = i;
         }
     }
 }

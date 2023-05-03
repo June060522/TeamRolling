@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class Scissor : MonoBehaviour, IDragHandler
 {
+    public static Scissor instance;
+
     public GameObject fur; // ±ðÀ» ¾ç ¸ðµ¨
     public int RandomInt;
     private float scissorSpeed = 100;
@@ -18,6 +20,8 @@ public class Scissor : MonoBehaviour, IDragHandler
     private bool isFail = false;
 
     public TextMeshProUGUI TimeText;
+
+    private void Awake() => instance = this;
 
     private void OnEnable()
     {
@@ -46,7 +50,7 @@ public class Scissor : MonoBehaviour, IDragHandler
         }
         else if (FarCount == RandomInt)
         {
-            value = 3;
+            value = Mathf.Ceil(timer / 3);
             return true;
         }
 
@@ -78,8 +82,6 @@ public class Scissor : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log(eventData.position);
-        Debug.Log(eventData.pointerDrag);
         transform.position = eventData.position;
     }
 }

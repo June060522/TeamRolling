@@ -5202,7 +5202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &857437544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14032,8 +14032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fur: {fileID: 8562051629990065951, guid: 9149afa71d52d9148aff2fca7abe1d03, type: 3}
   RandomInt: 0
-  EndText: {fileID: 793131122}
-  FailText: {fileID: 0}
   TimeText: {fileID: 2018462318}
 --- !u!224 &2091937060
 RectTransform:

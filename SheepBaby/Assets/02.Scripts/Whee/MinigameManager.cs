@@ -111,7 +111,7 @@ public class MinigameManager : MonoBehaviour
 
             cutPanel.SetActive(true);
 
-            if (WaterMinigame.instance.EndGame(out plusValue))//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
+            if (Scissor.instance.EndGame(out plusValue))//조건문에 bool형식 미니게임 끝나는 함수 넣기(out float 메게변수 넣어 plusValue바꿔주고)
             {
                 boyAbiliity.paper += plusValue;
                 cutPanel.SetActive(false);

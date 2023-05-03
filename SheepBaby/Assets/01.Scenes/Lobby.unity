@@ -658,8 +658,8 @@ MonoBehaviour:
         m_MethodName: BuySheep
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 117150395161187363, guid: 3da42fcabf1c8664292f398047e30020, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: fcea465ebcfd11448b8da11e080c83eb, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SheepPriceData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1076,8 +1076,8 @@ MonoBehaviour:
         m_MethodName: BuySheep
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 117150395161187363, guid: bc7d4b798f04ea94db4072c4437a7c6a, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 53b2ac376eb80c344b77a6c7576b19a0, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SheepPriceData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4605,8 +4605,8 @@ MonoBehaviour:
         m_MethodName: BuySheep
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 117150395161187363, guid: b8513c41194e5784899e6034c20a3da6, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: d673baf45f98ce24f82ed0687d4ee719, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SheepPriceData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5575,8 +5575,8 @@ MonoBehaviour:
         m_MethodName: BuySheep
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 117150395161187363, guid: 3fc7dee10184a9a43a91fdd4dbb44caf, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 91960fd9b6da8db459ec7ce0f5d6cd8e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SheepPriceData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5905,8 +5905,8 @@ MonoBehaviour:
         m_MethodName: BuySheep
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 117150395161187363, guid: 96818ddc3a3466f4dab442e6f9c5bdd8, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 31d8b240bcc7e354a998ebb136ef342e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SheepPriceData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6204,7 +6204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -155,11 +155,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  initSpeed: 4
   obstacle:
   - {fileID: 1771875964}
   - {fileID: 54055612}
   gameoverPanel: {fileID: 1896545062}
   scoreTxt: {fileID: 1097215536}
+  isGame: 1
 --- !u!61 &54055614
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1654,6 +1656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameoverPanel: {fileID: 1896545062}
+  scoreTxt: {fileID: 1097215536}
   isGround: 1
 --- !u!1 &600196942
 GameObject:
@@ -3155,8 +3158,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4156,8 +4159,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5232,8 +5235,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6233,12 +6236,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb53f29db7b17114fa700463a43611e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 2
+  initSpeed: 3
   obstacle:
   - {fileID: 1771875964}
   - {fileID: 54055612}
   gameoverPanel: {fileID: 1896545062}
   scoreTxt: {fileID: 1097215536}
+  isGame: 1
 --- !u!1 &1896545062
 GameObject:
   m_ObjectHideFlags: 0

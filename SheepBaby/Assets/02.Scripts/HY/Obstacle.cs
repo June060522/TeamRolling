@@ -5,20 +5,28 @@ using TMPro;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] float speed=2f;
+    [SerializeField] float initSpeed=3f;
     [SerializeField] GameObject[] obstacle = new GameObject[2];
     [SerializeField] GameObject gameoverPanel;
     [SerializeField] TextMeshProUGUI scoreTxt;
 
-    public bool isGame = true;
+    private Rigidbody2D rb;
+
     int scoreCnt = 0;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        speed = initSpeed;
+    }
 
     private void Update()
     {
-        if (isGame)
-        {
-            speed = 2f;
+        ScoreCnt();
 
+        if (MinigameSheep.isGame)
+        {
             for (int i = 0; i < 2; i++)
             {
                 Move(obstacle[i]);
@@ -30,16 +38,33 @@ public class Obstacle : MonoBehaviour
         }
     }
 
+    private void ScoreCnt()
+    {
+        if (MinigameSheep.isGame)
+        {
+            scoreCnt += 1;
+            scoreTxt.text = "score: " + scoreCnt.ToString();
+        }
+        else if (!MinigameSheep.isGame)
+        {
+            scoreCnt += 0;
+            scoreTxt.text = "score: " + scoreCnt.ToString();
+        }
+    }
+
     private void Move(GameObject obj)
     {
+        if (!MinigameSheep.isGame)
+            return;
+
         obj.transform.Translate(new Vector2(-speed * Time.deltaTime, 0));
     }
 
     public void Restart()
     {
-        isGame = true;
-        Time.timeScale = 1f;
-        speed = 1;
+        Debug.Log("Restart");
+        MinigameSheep.isGame = true;
+        speed = initSpeed;
         scoreCnt = 0;
 
         for (int i = 0; i < 2; i++)

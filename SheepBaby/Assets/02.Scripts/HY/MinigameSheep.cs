@@ -8,16 +8,13 @@ public class MinigameSheep : MonoBehaviour
     [SerializeField] private GameObject gameoverPanel;
     [SerializeField] TextMeshProUGUI scoreTxt;
 
-    private Obstacle obstacle;
-
     private Rigidbody2D rb;
 
     private float jumpPower = 5f;
-    private int scoreCnt = 0;
     private int jumpCnt = 1;
 
     public bool isGround = true;
-    public bool isGame = true;
+    public static bool isGame=true;
 
     void Start()
     {
@@ -26,17 +23,6 @@ public class MinigameSheep : MonoBehaviour
 
     void Update()
     {
-        if (isGame)
-        {
-            scoreCnt += 1;
-            scoreTxt.text = "score: " + scoreCnt.ToString();
-        }
-        else if (!isGame)
-        {
-            scoreCnt += 0;
-            scoreTxt.text = "score: " + scoreCnt.ToString();
-        }
-
         if (Input.GetKeyDown("space") && isGround)
         {
             if (jumpCnt == 1)
@@ -47,7 +33,7 @@ public class MinigameSheep : MonoBehaviour
             }
         }
     }
-
+    
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -67,6 +53,5 @@ public class MinigameSheep : MonoBehaviour
     {
         isGame = false;
         gameoverPanel.gameObject.SetActive(true);
-        Time.timeScale = 0f;
     }
 }

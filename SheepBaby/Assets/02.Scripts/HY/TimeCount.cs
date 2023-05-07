@@ -40,8 +40,11 @@ public class TimeCount : MonoBehaviour
     {
         timer += Time.deltaTime;
         timeText.text = $"{Mathf.FloorToInt(timer / 60)} : {Mathf.FloorToInt(timer % 60)}";
-
         dayCntText.text = $"Day {Mathf.FloorToInt(timer / 60)}";
+
+        if (!isNight && Mathf.FloorToInt(timer % 60) > 29)
+            StartCoroutine(WolfSpawn.wolfSpawn.WolfStart());
+
         if (Mathf.FloorToInt(timer % 60) > 29)
         {
             isNight = true;
@@ -52,9 +55,6 @@ public class TimeCount : MonoBehaviour
             isNight = false;
             globalLight.intensity = Mathf.Lerp(globalLight.intensity, 1.1f, 0.02f);
         }
-
-        if(!isNight && Mathf.FloorToInt(timer % 60) > 29) 
-            StartCoroutine(WolfSpawn.wolfSpawn.WolfStart());
     }
 
     IEnumerator DayCnt()

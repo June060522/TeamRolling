@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Goal
   - Far
+  - SheepEmplx
   layers:
   - Default
   - TransparentFX
@@ -48,12 +49,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 2884921377
+  - name: Scissor
+    uniqueID: 3464791061
     locked: 0
-  - name: Player
-    uniqueID: 2586967205
-    locked: 0
-  - name: Obstacle
-    uniqueID: 3604163159
+  - name: Far
+    uniqueID: 584852543
     locked: 0

@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    private GameObject sheepEmplx;
+
     [SerializeField] private GameObject storePanel;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Button storeButton;
     [SerializeField] private Button optionButton;
 
 
-    private void Awake()
-    {
-        //timeCount = GetComponent<TimeCount>();
-    }
+    private void Start()
+        => sheepEmplx = GameObject.FindWithTag("SheepEmplx");
 
     public void storeBtnClick()
     {
@@ -48,7 +48,17 @@ public class ButtonManager : MonoBehaviour
 
     public void ReStartClick() 
     {
-        
+        BoyAbiliity boy = FindObjectOfType<BoyAbiliity>();
+        boy.tired = 100;
+
+        SheepAbiliity[] sheepAbiliity = FindObjectsOfType<SheepAbiliity>();
+        foreach (SheepAbiliity s in sheepAbiliity)
+        {
+            s.fun = 100;
+            s.thirst = 100;
+            s.hungry = 100;
+        }
+
         SceneManager.LoadScene("DevWheesung");
 
     }
@@ -59,6 +69,9 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("DevHMin");
 
     }
+
+    public void SheepDestory()
+        => Destroy(sheepEmplx);
 
     public void LoadScene(string str)
     {

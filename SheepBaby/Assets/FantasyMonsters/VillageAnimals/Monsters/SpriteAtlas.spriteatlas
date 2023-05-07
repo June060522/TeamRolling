@@ -136,6 +136,7 @@ SpriteAtlas:
   - {fileID: -7252215782646672311, guid: 4abb3eb493d3e6849be720cb42132c28, type: 3}
   - {fileID: -5673618120071735642, guid: 4abb3eb493d3e6849be720cb42132c28, type: 3}
   - {fileID: -1381065623766834176, guid: 4abb3eb493d3e6849be720cb42132c28, type: 3}
+  - {fileID: 21300000, guid: 8570e0e4d835e174390d9e613c566915, type: 3}
   - {fileID: -5890888257780047973, guid: dfa21d35de8dc6743b096c5d68bb2a55, type: 3}
   - {fileID: 6882371640200617258, guid: dfa21d35de8dc6743b096c5d68bb2a55, type: 3}
   - {fileID: -1828946549344447192, guid: dfa21d35de8dc6743b096c5d68bb2a55, type: 3}
@@ -350,6 +351,7 @@ SpriteAtlas:
   - HeadAngry
   - Body
   - HeadDead
+  - SheepIcon
   - Tail
   - LegFront
   - HeadNormal

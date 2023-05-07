@@ -7,14 +7,14 @@ using Enum;
 public class SheepAbiliity : MonoBehaviour
 {
     [Header("¾ç ±âº» ½ºÅÝ")]
-    //[SerializeField] float fun = 100f;
-    [SerializeField] float thirst = 100f;
-    [SerializeField] float hungry = 100f;
-    [SerializeField] float stress = 100f;
+    [SerializeField] public float fun = 100f;
+    [SerializeField] public float thirst = 100f;
+    [SerializeField] public float hungry = 100f;
+    //[SerializeField] float stress = 100f;
 
     public float Thirst { get { return thirst; } private set { } }
     public float Hungry { get { return hungry; } private set { } }
-    public float Stress { get { return stress; } private set { } }
+    public float Fun { get { return fun; } private set { } }
 
     private float lifeTime = 0f;
 
@@ -49,7 +49,7 @@ public class SheepAbiliity : MonoBehaviour
         switch (stat)
         {
             case Stat.fun:
-                //fun += changeValue;
+                fun += changeValue;
                 break;
             case Stat.thirst:
                 thirst += changeValue;
@@ -58,14 +58,14 @@ public class SheepAbiliity : MonoBehaviour
                 hungry += changeValue;
                 break;
             case Stat.stress:
-                stress += changeValue;
+                //stress += changeValue;
                 break;
         }
     }
 
     void SheepDie()
     {
-        if (thirst <= 0 || hungry <= 0 || stress <= 0)
+        if (thirst <= 0 || hungry <= 0 || fun <= 0)
         {
             GameOver.gameOver.StateOver();
         }

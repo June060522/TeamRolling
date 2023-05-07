@@ -12,10 +12,13 @@ public class Scissor : MonoBehaviour
     private int FarCount;
     private float timer = 15;
 
+    private bool isWaiting = false;
+    private bool isClear = false;
+    private bool isFail = false;
+
     public TextMeshProUGUI RandomText;
     public TextMeshProUGUI CountText;
     public TextMeshProUGUI EndText;
-    public TextMeshProUGUI FailText;
     public TextMeshProUGUI TimeText;
 
     private void Start()
@@ -35,7 +38,8 @@ public class Scissor : MonoBehaviour
         TimeText.text = "남은시간 : " + Mathf.Round(timer);
         if(timer <= 0)
         {
-            FailText.text = "failure";
+            EndText.color = Color.red;
+            EndText.text = "failure";
             enabled = false;
         }
     }
@@ -53,12 +57,6 @@ public class Scissor : MonoBehaviour
         RandomText.text = $"{RandomInt}";
     }
 
-    IEnumerator DeilyTime(float _deilyTime, Action collback)
-    {
-        yield return new WaitForSeconds(_deilyTime);
-        collback?.Invoke();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Far"))
@@ -66,14 +64,34 @@ public class Scissor : MonoBehaviour
             Destroy(collision.gameObject);
             FarCount++;
             CountText.text = $"{FarCount}";
-            if(FarCount == RandomInt)
+            if (FarCount == RandomInt)
             {
-                StartCoroutine(DeilyTime(1, () =>
+                if (!isWaiting)
                 {
-                    EndText.text = "Clear";
-                    enabled = false;
-                }));
+                    isWaiting = true;
+                    StartCoroutine(DeilyTime(1, () =>
+                    {
+                        if (FarCount > RandomInt)
+                        {
+                            isFail = true;
+                            isClear = false;
+                        }
+                        else
+                        {
+                            isClear = true;
+                            isFail = false;
+                        }
+                        EndText.text = isClear ? "Clear" : "Fail";
+                        enabled = false;
+                    }));
+                }
             }
         }
+    }
+
+    private IEnumerator DeilyTime(float seconds, Action callback)
+    {
+        yield return new WaitForSeconds(seconds);
+        callback?.Invoke();
     }
 }

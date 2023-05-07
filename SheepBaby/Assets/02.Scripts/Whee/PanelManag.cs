@@ -18,7 +18,7 @@ public class PanelManag : MonoBehaviour
     [Header("SheepText")]
     [SerializeField] private Text thirstText;
     [SerializeField] private Text hungryText;
-    [SerializeField] private Text stressText;
+    [SerializeField] private Text funText;
 
     [Header("BoyText")]
     [SerializeField] private Text tiredText;
@@ -48,6 +48,7 @@ public class PanelManag : MonoBehaviour
         }
         else
         {
+            bool sheepChose = false;
             foreach (SheepMove sheep in sheeps)
             {
                 if (sheep.isChose)
@@ -58,7 +59,23 @@ public class PanelManag : MonoBehaviour
                     boyUI.SetActive(false);
                     sheepPrefit.SetActive(true);
                     boyPrefit.SetActive(false);
+
+                    sheepChose = true;
                 }
+            }
+
+            if (!sheepChose)
+            {
+                sheepUI.SetActive(false);
+                boyUI.SetActive(false);
+                sheepPrefit.SetActive(false);
+                boyPrefit.SetActive(false);
+
+                thirstText.text = "";
+                hungryText.text = "";
+                funText.text = "";
+                tiredText.text = "";
+                paperText.text = "";
             }
         }
     }
@@ -71,8 +88,8 @@ public class PanelManag : MonoBehaviour
 
     void SheepText(SheepAbiliity sheep)
     {
+        funText.text = $"Fun : {Mathf.RoundToInt(sheep.Fun)}";
         thirstText.text = $"Thirst : {Mathf.RoundToInt(sheep.Thirst)}";
         hungryText.text = $"Hungry : {Mathf.RoundToInt(sheep.Hungry)}";
-        stressText.text = $"Stress : {Mathf.RoundToInt(sheep.Stress)}";
     }
 }

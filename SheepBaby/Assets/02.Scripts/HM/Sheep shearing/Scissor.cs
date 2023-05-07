@@ -3,45 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class Scissor : MonoBehaviour
+public class Scissor : MonoBehaviour, IDragHandler
 {
-    public GameObject fur; // ±ðÀ» ¾ç ¸ðµ¨
-    public int RandomInt = 10;
+    public static Scissor instance;
+
+    public GameObject fur; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
+    public int RandomInt;
     private float scissorSpeed = 100;
     private int FarCount;
-    private float timer = 15;
+    private float timer;
 
     private bool isWaiting = false;
     private bool isClear = false;
     private bool isFail = false;
 
-    public TextMeshProUGUI RandomText;
-    public TextMeshProUGUI CountText;
-    public TextMeshProUGUI EndText;
     public TextMeshProUGUI TimeText;
 
-    private void Start()
+    private void Awake() => instance = this;
+
+    private void OnEnable()
     {
-        FarRandom();
+        timer = 15;
+        RandomInt = 15;
+        FarCount = 0;
     }
 
     private void Update()
     {
-        Move();
         CountTime();
     }
 
     private void CountTime()
     {
         timer -= Time.deltaTime;
-        TimeText.text = "³²Àº½Ã°£ : " + Mathf.Round(timer);
-        if(timer <= 0)
+        TimeText.text = Mathf.Round(timer).ToString();
+    }
+
+    public bool EndGame(out float value)
+    {
+        if (timer <= 0)
         {
-            EndText.color = Color.red;
-            EndText.text = "failure";
-            enabled = false;
+            value = 0;
+            return true;
         }
+        else if (FarCount == RandomInt)
+        {
+            value = Mathf.Ceil(timer / 3);
+            return true;
+        }
+
+        value = 0;
+        return false;
     }
 
     private void Move()
@@ -51,10 +65,10 @@ public class Scissor : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, mousePosition, scissorSpeed * Time.deltaTime);
     }
 
-    public void FarRandom()
+    IEnumerator DeilyTime(float _deilyTime, Action collback)
     {
-        RandomInt = UnityEngine.Random.Range(1, 10);
-        RandomText.text = $"{RandomInt}";
+        yield return new WaitForSeconds(_deilyTime);
+        collback?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,35 +77,11 @@ public class Scissor : MonoBehaviour
         {
             Destroy(collision.gameObject);
             FarCount++;
-            CountText.text = $"{FarCount}";
-            if (FarCount == RandomInt)
-            {
-                if (!isWaiting)
-                {
-                    isWaiting = true;
-                    StartCoroutine(DeilyTime(1, () =>
-                    {
-                        if (FarCount > RandomInt)
-                        {
-                            isFail = true;
-                            isClear = false;
-                        }
-                        else
-                        {
-                            isClear = true;
-                            isFail = false;
-                        }
-                        EndText.text = isClear ? "Clear" : "Fail";
-                        enabled = false;
-                    }));
-                }
-            }
         }
     }
 
-    private IEnumerator DeilyTime(float seconds, Action callback)
+    public void OnDrag(PointerEventData eventData)
     {
-        yield return new WaitForSeconds(seconds);
-        callback?.Invoke();
+        transform.position = eventData.position;
     }
 }

@@ -5,25 +5,29 @@ using TMPro;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] GameObject[] ground = new GameObject[2];
-    [SerializeField] GameObject[] obstacle = new GameObject[3];
+    [SerializeField] float speed=2f;
+    [SerializeField] float initSpeed=3f;
+    [SerializeField] GameObject[] obstacle = new GameObject[2];
     [SerializeField] GameObject gameoverPanel;
     [SerializeField] TextMeshProUGUI scoreTxt;
 
-    public static bool isGame = true;
+    private Rigidbody2D rb;
+
     int scoreCnt = 0;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        speed = initSpeed;
+    }
 
     private void Update()
     {
-        if (isGame)
+        ScoreCnt();
+
+        if (MinigameSheep.isGame)
         {
-            speed=3.5f;
-
-            scoreCnt += 1;
-            scoreTxt.text = "score: " + scoreCnt.ToString();
-
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Move(obstacle[i]);
                 if (obstacle[i].transform.position.x < -14)
@@ -31,35 +35,43 @@ public class Obstacle : MonoBehaviour
                     obstacle[i].transform.position = new Vector3(7, obstacle[i].transform.position.y, 0);
                 }
             }
+        }
+    }
 
-            for (int i = 0; i < 2; i++)
-            {
-                Move(ground[i]);
-                if (ground[i].transform.position.x <= -10)
-                {
-                    ground[i].transform.position = new Vector3(0, ground[i].transform.position.y, 0);
-                }
-            }
+    private void ScoreCnt()
+    {
+        if (MinigameSheep.isGame)
+        {
+            scoreCnt += 1;
+            scoreTxt.text = "score: " + scoreCnt.ToString();
+        }
+        else if (!MinigameSheep.isGame)
+        {
+            scoreCnt += 0;
+            scoreTxt.text = "score: " + scoreCnt.ToString();
         }
     }
 
     private void Move(GameObject obj)
     {
+        if (!MinigameSheep.isGame)
+            return;
+
         obj.transform.Translate(new Vector2(-speed * Time.deltaTime, 0));
     }
 
     public void Restart()
     {
-        isGame = true;
-        Time.timeScale = 1f;
-        speed = 1;
+        Debug.Log("Restart");
+        MinigameSheep.isGame = true;
+        speed = initSpeed;
         scoreCnt = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
-            obstacle[i].transform.position = new Vector3(Random.Range(0,15),
+            obstacle[i].transform.position = new Vector3((i * 8) + i,
                 obstacle[i].transform.position.y, 0);
         }
-        gameoverPanel.SetActive(false);
+        gameoverPanel.gameObject.SetActive(false);
     }
 }

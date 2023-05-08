@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,7 +21,9 @@ public class SheepStore : MonoBehaviour
     }
 
     private void Update()
-        => paperText.text = paper.ToString();
+    {
+        paperText.text = paper.ToString();
+    }
 
     public void BuySheep(SheepPriceData sheepPriceData)
     {
@@ -31,7 +34,8 @@ public class SheepStore : MonoBehaviour
             paper -= sheepPriceData.price;
             PlayerPrefs.SetFloat("Paper", paper);
 
-            GameObject newSheep = Instantiate(sheepPriceData.sheep, new Vector3(UnityEngine.Random.Range(-5f, 6f), -0.02f, 0), Quaternion.identity); ;
+            GameObject newSheep = Instantiate(sheepPriceData.sheep);
+            //GameObject newSheep = Instantiate(sheepPriceData.sheep, new Vector3(Random.Range(-5f, 6f), -0.02f, 0), Quaternion.identity);
 
             newSheep.GetComponent<SheepMove>().enabled = false;
             newSheep.GetComponent<SheepAbiliity>().enabled = false;
@@ -39,10 +43,23 @@ public class SheepStore : MonoBehaviour
             newSheep.transform.parent = sheepEmple.transform;
             newSheep.tag = "Sheep";
         }
+
+        int d = sheepEmple.transform.childCount;
+        Debug.Log(d);
+        List<GameObject> allSheep = new List<GameObject>();
+
+        for (int i = 0; i < d; i++)
+            allSheep.Add(sheepEmple.transform.GetChild(i).gameObject);
+
+        allSheep.Sort((a, b) => a.name.CompareTo(b.name));
+
+        for (int i = 0; i < d; i++)
+            allSheep[i].transform.position = new Vector3(-(d / 2) + (i * 1.5f), 0, 0);
     }
 
     public void GameStart()
     {
-        SceneManager.LoadScene("DevWheesung");
+        if(sheepEmple.transform.childCount > 0)
+            SceneManager.LoadScene("DevWheesung");
     }
 }

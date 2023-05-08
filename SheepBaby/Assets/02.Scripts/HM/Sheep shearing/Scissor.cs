@@ -15,10 +15,6 @@ public class Scissor : MonoBehaviour, IDragHandler
     private int FarCount;
     private float timer;
 
-    private bool isWaiting = false;
-    private bool isClear = false;
-    private bool isFail = false;
-
     public TextMeshProUGUI TimeText;
 
     private void Awake() => instance = this;

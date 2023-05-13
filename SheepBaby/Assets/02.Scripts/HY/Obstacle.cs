@@ -6,7 +6,7 @@ using TMPro;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed=2f;
-    [SerializeField] float initSpeed=3f;
+    [SerializeField] float initSpeed=2f;
     [SerializeField] GameObject[] obstacle = new GameObject[2];
     [SerializeField] GameObject gameoverPanel;
     [SerializeField] TextMeshProUGUI scoreTxt;
@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour
             for (int i = 0; i < 2; i++)
             {
                 Move(obstacle[i]);
-                if (obstacle[i].transform.position.x < -14)
+                if (obstacle[i].transform.position.x < -6.8)
                 {
                     obstacle[i].transform.position = new Vector3(7, obstacle[i].transform.position.y, 0);
                 }

@@ -628,9 +628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cae18d6fdb03e43a6943a9a72e2455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fun: 100
   thirst: 100
   hungry: 100
-  stress: 100
 --- !u!1 &188064519148664878
 GameObject:
   m_ObjectHideFlags: 0

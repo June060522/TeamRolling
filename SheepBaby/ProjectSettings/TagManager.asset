@@ -55,3 +55,12 @@ TagManager:
   - name: Far
     uniqueID: 584852543
     locked: 0
+  - name: Background
+    uniqueID: 2884921377
+    locked: 0
+  - name: Player
+    uniqueID: 2586967205
+    locked: 0
+  - name: Obstacle
+    uniqueID: 3604163159
+    locked: 0

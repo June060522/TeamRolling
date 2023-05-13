@@ -22,16 +22,16 @@ public class SheepStore : MonoBehaviour
     private void Update()
         => paperText.text = paper.ToString();
 
-    public void BuySheep(GameObject sheep)
+    public void BuySheep(SheepPriceData sheepPriceData)
     {
         float sheetCnt = GameObject.FindGameObjectsWithTag("Sheep").Length;
 
         if (paper > 0 && sheetCnt < 10)
         {
-            paper--;
+            paper -= sheepPriceData.price;
             PlayerPrefs.SetFloat("Paper", paper);
 
-            GameObject newSheep = Instantiate(sheep, new Vector3(UnityEngine.Random.Range(-5f, 6f), -0.02f, 0), Quaternion.identity); ;
+            GameObject newSheep = Instantiate(sheepPriceData.sheep, new Vector3(UnityEngine.Random.Range(-5f, 6f), -0.02f, 0), Quaternion.identity); ;
 
             newSheep.GetComponent<SheepMove>().enabled = false;
             newSheep.GetComponent<SheepAbiliity>().enabled = false;
